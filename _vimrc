@@ -4,6 +4,8 @@
 " -----------------   https://github.com/ruchee/vimrc
 
 
+
+
 " ---------- Ctrl系按键 ----------
 "
 " Ctrl + H                   --光标移当前行行首       [插入模式]
@@ -40,13 +42,14 @@
 " \bv                        --打开BufExplorer窗口    [边栏显示] [Normal模式可用]
 "
 " \fe                        --打开/关闭文件编码窗口  [Normal模式可用]
+" \ff                        --打开文件搜索窗口       [Normal模式可用]
 " \mp                        --生成Promptline脚本文件 [Normal模式可用]
 "
 " \gi                        --开启或关闭GitGutter    [Normal模式可用]
-" \gd                        --打开Git文件对比模式    [Normal模式可用] [竖直]
-" \gs                        --打开Git文件对比模式    [Normal模式可用] [水平]
+" \gd                        --打开Git文件对比模式 [竖直] [Normal模式可用]
+" \gs                        --打开Git文件对比模式 [水平] [Normal模式可用]
 "
-" \il                        --显示/关闭对齐线        [Normal模式可用]
+" \ig                        --显示/关闭对齐线        [Normal模式可用]
 " \bb                        --按=号对齐代码          [Normal模式可用]
 " \bn                        --自定义对齐             [Normal模式可用]
 " \th                        --一键生成与当前编辑文件同名的HTML文件 [不输出行号]
@@ -58,6 +61,9 @@
 " \cu                        --取消注释               [NERD_commenter]
 "
 " \php                       --一键切换到PHP语法高亮
+" \tw1                       --一键切换到html.twig语法高亮
+" \tw2                       --一键切换到jinja.twig语法高亮
+" \tw3                       --一键切换到htmldjango.twig语法高亮
 " \ruby                      --一键切换到Ruby语法高亮
 " \eruby                     --一键切换到eRuby语法高亮
 " \js                        --一键切换到JavaScript语法高亮
@@ -66,7 +72,7 @@
 
 " ---------- 补全命令 ----------
 "
-" Ctrl + P                   --缓冲区补全             [插入模式]
+" Ctrl + P                   --缓冲区补全             [插入模式] [也可在Normal模式下打开文件搜索窗口，由ctrlP插件提供]
 " Ctrl + U                   --全能补全               [插入模式]
 " Tab键                      --语法结构补全           [插入模式] [snipMate插件]
 " Ctrl + Y + ,               --HTML标签补全           [插入模式] [emmet插件]
@@ -80,7 +86,7 @@
 
 " u [小写]                   --单步复原               [非插入模式]
 " U [大写]                   --整行复原               [非插入模式]
-" Ctrl + R                   --反撤消                 [非插入模式]
+" Ctrl + R                   --撤消“撤消”操作         [非插入模式]
 "
 " \pcf                       --格式化当前PHP文件              [Normal模式] [php-cs-fixer插件]
 " \pcd                       --格式化当前目录下的所有PHP文件  [Normal模式] [php-cs-fixer插件]
@@ -180,7 +186,18 @@
 " ]z                         --到当前打开的折叠的末尾处
 " zj                         --向下移动到后一个折叠的开始处
 " zk                         --向上移动到前一个折叠的结束处
-"
+"zc	关闭当前打开的折叠
+"zo	打开当前的折叠
+"zm	关闭所有折叠
+"zM	关闭所有折叠及其嵌套的折叠
+"zr	打开所有折叠
+"zR	打开所有折叠及其嵌套的折叠
+"zd	删除当前折叠
+"zE	删除所有折叠
+"zj	移动至下一个折叠
+"zk	移动至上一个折叠
+"zn	禁用折叠
+"zN	启用折叠
 " ---------- Vimwiki [Vim中的wiki/blog系统] ----------------
 "
 " 链接：[[链接地址|链接描述]]
@@ -221,21 +238,21 @@ set shiftwidth=4
 set tabstop=4
 
 " 对部分语言设置单独的缩进
-au FileType scala,clojure,elixir,eelixir,scheme,racket,newlisp,lisp,lua,ruby,eruby,julia,dart,elm,coffee,ls,slim,jade,sh set shiftwidth=2
-au FileType scala,clojure,elixir,eelixir,scheme,racket,newlisp,lisp,lua,ruby,eruby,julia,dart,elm,coffee,ls,slim,jade,sh set tabstop=2
+au FileType scheme,racket,lisp,clojure,lua,ruby,scala,elixir,julia,dart,coffee,sh,eruby,slim,jade set shiftwidth=2
+au FileType scheme,racket,lisp,clojure,lua,ruby,scala,elixir,julia,dart,coffee,sh,eruby,slim,jade set tabstop=2
 
-" 修正Go语言的部分快捷键 [需要安装 gotags + godef + gocode]
-au FileType go nmap <c-[> :GoInfo<cr>
+" 修正Go语言的部分快捷键
+" go get -u github.com/jstemmer/gotags
+" go get -u github.com/rogpeppe/godef
+" go get -u github.com/nsf/gocode [Windows使用 go get -u -ldflags -H=windowsgui github.com/nsf/gocode]
 au FileType go nmap <c-]> :GoDef<cr>
 au FileType go nmap <c-t> <c-o>
 
 " 根据后缀名指定文件类型
 au BufRead,BufNewFile *.h        setlocal ft=c
-au BufRead,BufNewFile *.i        setlocal ft=c
 au BufRead,BufNewFile *.m        setlocal ft=objc
 au BufRead,BufNewFile *.di       setlocal ft=d
 au BufRead,BufNewFile *.ss       setlocal ft=scheme
-au BufRead,BufNewFile *.lsp      setlocal ft=newlisp
 au BufRead,BufNewFile *.cl       setlocal ft=lisp
 au BufRead,BufNewFile *.phpt     setlocal ft=php
 au BufRead,BufNewFile *.inc      setlocal ft=php
@@ -244,9 +261,8 @@ au BufRead,BufNewFile *.tpl      setlocal ft=smarty
 au BufRead,BufNewFile *.txt      setlocal ft=txt
 au BufRead,BufNewFile *.log      setlocal ft=conf
 au BufRead,BufNewFile hosts      setlocal ft=conf
-au BufRead,BufNewFile *.conf     setlocal ft=dosini
 au BufRead,BufNewFile http*.conf setlocal ft=apache
-au BufRead,BufNewFile nginx.conf setlocal ft=nginx
+au BufRead,BufNewFile *.conf     setlocal ft=nginx
 au BufRead,BufNewFile *.ini      setlocal ft=dosini
 
 
@@ -261,6 +277,7 @@ else
     colorscheme molokai
     set guifont=Monaco\ 11
 endif
+
 
 
 set backspace=2              " 设置退格键可用
@@ -339,9 +356,9 @@ endif
 :inoremap " ""<esc>i
 :inoremap ' ''<esc>i
 :inoremap ` ``<esc>i
-au FileType scheme,racket,newlisp,lisp,clojure :inoremap ' '
-au FileType scheme,racket,newlisp,lisp,clojure :inoremap ` `
-au FileType scheme,racket,newlisp,lisp,clojure :inoremap * **<esc>i
+au FileType scheme,racket,lisp,clojure :inoremap ' '
+au FileType scheme,racket,lisp,clojure :inoremap ` `
+au FileType scheme,racket,lisp,clojure :inoremap * **<esc>i
 
 function ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
@@ -357,18 +374,15 @@ execute pathogen#infect()
 
 
 " 针对部分语言加减指定字符的单词属性
-au FileType clojure        set iskeyword-=.
-au FileType clojure        set iskeyword-=>
-au FileType perl,php       set iskeyword-=.
-au FileType perl,php       set iskeyword-=$
-au FileType perl,php       set iskeyword-=-
-au FileType ruby           set iskeyword+=!
-au FileType ruby           set iskeyword+=?
-au FileType css,scss,less  set iskeyword+=.
-au FileType css,scss,less  set iskeyword+=#
-au FileType css,scss,less  set iskeyword+=-
-au FileType nginx          set iskeyword-=/
-au FileType nginx          set iskeyword-=.
+au FileType clojure   set iskeyword-=.
+au FileType clojure   set iskeyword-=>
+au FileType perl,php  set iskeyword-=.
+au FileType perl,php  set iskeyword-=$
+au FileType perl,php  set iskeyword-=-
+au FileType ruby      set iskeyword+=!
+au FileType ruby      set iskeyword+=?
+au FileType nginx     set iskeyword-=/
+au FileType nginx     set iskeyword-=.
 
 
 " 针对部分语言添加字典补全
@@ -381,12 +395,7 @@ au FileType php        call AddPHPDict()
 au FileType python     call AddPythonDict()
 au FileType ruby       call AddRubyDict()
 au FileType javascript call AddJavaScriptDict()
-au FileType coffee     call AddJavaScriptDict()
-au FileType typescript call AddJavaScriptDict()
-au FileType ls         call AddJavaScriptDict()
 au FileType css        call AddCSSDict()
-au FileType scss       call AddCSSDict()
-au FileType less       call AddCSSDict()
 
 function AddCDict()
     if g:isWIN
@@ -484,25 +493,22 @@ endfunction
 
 
 " 开启部分语法高亮的非默认特性
-let g:cpp_class_scope_highlight           = 1  " 高亮C++ class scope
-let g:cpp_experimental_template_highlight = 1  " 高亮C++ template functions
-let g:go_auto_type_info                   = 0  " 关闭Go语言自动显示类型信息 [默认就是关闭的，此处用于方便需要时开启]
-let g:go_def_mapping_enabled              = 0  " 关闭Go语言对gd的绑定
-let g:go_highlight_operators              = 1  " 开启Go语言操作符高亮
-let g:go_highlight_functions              = 1  " 开启Go语言函数名高亮
-let g:go_highlight_methods                = 1  " 开启Go语言方法名高亮
-let g:go_highlight_structs                = 1  " 开启Go语言结构体名高亮
-let g:haskell_enable_quantification       = 1  " 开启Haskell高亮 forall
-let g:haskell_enable_recursivedo          = 1  " 开启Haskell高亮 mdo and rec
-let g:haskell_enable_arrowsyntax          = 1  " 开启Haskell高亮 proc
-let g:haskell_enable_pattern_synonyms     = 1  " 开启Haskell高亮 pattern
-let g:haskell_enable_typeroles            = 1  " 开启Haskell高亮 type roles
-let g:haskell_enable_static_pointers      = 1  " 开启Haskell高亮 static
-let g:python_highlight_all                = 1  " 开启Python的所有高亮
+let g:cpp_class_scope_highlight           = 1 " 高亮C++ class scope
+let g:cpp_experimental_template_highlight = 1 " 高亮C++ template functions
+let g:go_auto_type_info                   = 0 " 关闭Go语言自动显示类型信息 [默认就是关闭的，此处用于方便需要时开启]
+let g:go_def_mapping_enabled              = 0 " 关闭Go语言对gd的绑定
+let g:go_highlight_operators              = 1 " 开启Go语言操作符高亮
+let g:go_highlight_functions              = 1 " 开启Go语言函数名高亮
+let g:go_highlight_methods                = 1 " 开启Go语言方法名高亮
+let g:go_highlight_structs                = 1 " 开启Go语言结构体名高亮
+let g:haskell_enable_quantification       = 1 " 开启Haskell高亮 forall
+let g:haskell_enable_recursivedo          = 1 " 开启Haskell高亮 mdo and rec
+let g:haskell_enable_arrowsyntax          = 1 " 开启Haskell高亮 proc
+let g:haskell_enable_pattern_synonyms     = 1 " 开启Haskell高亮 pattern
+let g:haskell_enable_typeroles            = 1 " 开启Haskell高亮 type roles
+let g:haskell_enable_static_pointers      = 1 " 开启Haskell高亮 static
+let g:python_highlight_all                = 1 " 开启Python的所有高亮
 
-" 设置部分语言插件的特性
-let g:smarty_left_delimiter  = '{{'            " 设置Smarty标签左界定符
-let g:smarty_right_delimiter = '}}'            " 设置Smarty标签右界定符
 
 " BufExplorer         文件缓冲浏览器
 let g:bufExplorerSortBy = 'name'               " 按文件名排序
@@ -511,6 +517,7 @@ let g:bufExplorerSortBy = 'name'               " 按文件名排序
 let g:tagbar_sort = 0                          " 关闭排序     [也就是按标签本身在文件中的位置排序]
 let g:tagbar_show_linenumbers = -1             " 显示行号     [使用全局关于行号的默认配置]
 let g:tagbar_autopreview = 1                   " 开启自动预览 [随着光标在标签上的移动，顶部会出现一个实时的预览窗口]
+
 
 " snipMate            Tab智能补全
 let g:snips_author = 'Ruchee'
@@ -533,16 +540,15 @@ let g:snipMate.scope_aliases['objc']            = 'cpp,objc'
 let g:snipMate.scope_aliases['racket']          = 'scheme,racket'
 let g:snipMate.scope_aliases['typescript']      = 'javascript,typescript'
 let g:snipMate.scope_aliases['javascript.jsx']  = 'javascript,jsx'
-let g:snipMate.scope_aliases['eelixir']         = 'html,eelixir'
 let g:snipMate.scope_aliases['smarty']          = 'html,smarty'
 let g:snipMate.scope_aliases['blade']           = 'html,blade'
 let g:snipMate.scope_aliases['volt']            = 'html,volt'
+let g:snipMate.scope_aliases['latte']           = 'html,latte'
 let g:snipMate.scope_aliases['html.twig']       = 'html,twig'
 let g:snipMate.scope_aliases['jinja.twig']      = 'html,twig'
 let g:snipMate.scope_aliases['htmldjango.twig'] = 'html,twig'
 let g:snipMate.scope_aliases['htmldjango']      = 'html,htmldjango'
 let g:snipMate.scope_aliases['jinja']           = 'html,jinja'
-let g:snipMate.scope_aliases['ruby']            = 'ruby,rails'
 let g:snipMate.scope_aliases['eruby']           = 'html,eruby'
 let g:snipMate.scope_aliases['jst']             = 'html,jst'
 let g:snipMate.scope_aliases['mustache']        = 'html,mustache'
@@ -551,21 +557,15 @@ let g:snipMate.scope_aliases['scss']            = 'css,scss'
 let g:snipMate.scope_aliases['less']            = 'css,less'
 let g:snipMate.scope_aliases['xhtml']           = 'html'
 
-" NERDTree            树形文件浏览器
-let g:NERDTreeShowHidden = 1                   " 显示隐藏文件
-
 " NERD_commenter      注释处理插件
 let NERDSpaceDelims = 1                        " 自动添加前置空格
 
-" indentLine          显示对齐线
-let g:indentLine_enabled    = 0                " 默认关闭
-let g:indentLine_char       = '┆'             " 设置对齐线字符
-let g:indentLine_color_term = 239              " 设置非GUI线条颜色
-let g:indentLine_color_gui  = '#A4E57E'        " 设置GUI线条颜色
+" Indent_guides       显示对齐线
+let g:indent_guides_enable_on_vim_startup = 0  " 默认关闭
+let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
 
 " AirLine             彩色状态栏
-let g:airline_theme           = 'badwolf'      " 设置主题
-let g:airline_powerline_fonts = 0              " 关闭自定义字体
+let g:airline_theme = 'badwolf'                " 设置主题
 
 " Promptline          终端辅助工具
 let g:promptline_powerline_symbols = 0         " 关闭特殊符号
@@ -585,32 +585,25 @@ let g:gitgutter_sign_modified         = '>'    " 自定义修改指示符
 let g:gitgutter_sign_removed          = '-'    " 自定义删除指示符
 let g:gitgutter_sign_modified_removed = '->'   " 自定义既修改又删除指示符
 
+
 " Syntastic           语法检查
 let g:syntastic_check_on_open = 1              " 默认开启
 let g:syntastic_mode_map      = {
             \'mode': 'active',
-            \'passive_filetypes': ['groovy', 'kotlin', 'ceylon', 'scala', 'clojure', 'lisp', 'eruby', 'slim', 'jade', 'scss', 'less', 'css', 'html', 'xhtml']
+            \'passive_filetypes': ['go', 'lisp', 'clojure', 'groovy', 'kotlin', 'scala', 'typescript', 'eruby', 'slim', 'jade', 'scss', 'less', 'css', 'html', 'xhtml']
             \}                                 " 指定不需要开启检查的语言
 " 自定义编译器和编译参数
-if g:isWIN
-    let g:syntastic_c_compiler = 'gcc'
-    let g:syntastic_cpp_compiler = 'g++'
-else
-    let g:syntastic_c_compiler = 'clang'
-    let g:syntastic_cpp_compiler = 'clang++'
-endif
+let g:syntastic_c_compiler = 'gcc'
+let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_c_compiler_options = '-std=c11 -Wall'
 let g:syntastic_cpp_compiler_options = '-std=c++14 -Wall'
-let g:syntastic_elixir_checkers = ['elixir']
-let g:syntastic_enable_elixir_checker = 1
-let g:syntastic_perl_checkers = ['perl']
-let g:syntastic_enable_perl_checker = 1
-let g:syntastic_python_python_exec = 'python3'
 " 自定义指定后缀的文件不开启语法检查
 au BufRead,BufNewFile *.min.js,*.jsx,*.html exec ':SyntasticToggleMode'
 
+
 " javascript-libraries-syntax                    指定需要高亮的JS库
-let g:used_javascript_libs = 'jquery,requirejs,underscore,backbone,angularjs,angularui,angularuirouter,react,flux,handlebars'
+let g:used_javascript_libs = 'jquery,requirejs,angularjs,angularui,react'
+
 
 " php-cs-fixer                                   格式化PHP代码
 let g:php_cs_fixer_level = 'symfony'           " 使用Symfony推荐的代码风格
@@ -638,8 +631,8 @@ imap <c-j> <esc><down>I
 map <c-j> <c-w><c-j>
 
 " Ctrl + K            光标移上一行行尾[插入模式]、切换上窗口[Normal模式]
-imap <c-k> <esc><up>A
-map <c-k> <c-w><c-k>
+imap <c-u> <esc><up>A
+map <c-u> <c-w><c-k>
 
 " Ctrl + L            光标移当前行行尾[插入模式]、切换右窗口[Normal模式]
 imap <c-l> <esc>A
@@ -677,14 +670,14 @@ nmap <leader>bn :Tab /
 " \nt                 打开/关闭文件树窗口，在左侧栏显示 [NERDTree插件]
 nmap <leader>nt :NERDTree<cr>
 
-" \il                 显示/关闭对齐线 [indentLine插件]
-nmap <leader>il :IndentLinesToggle<cr>
-
 " \tl                 打开/关闭Tags窗口，在右侧栏显示 [Tagbar插件]
 nmap <leader>tl :TagbarToggle<cr><c-w><c-l>
 
 " \fe                 打开文件编码窗口，在右侧栏显示 [FencView插件]
 nmap <leader>fe :FencView<cr>
+
+" \ff                 打开文件搜索窗口，在最下方显示 [CtrlP插件]
+nmap <leader>ff :CtrlPMixed<cr>
 
 " \mp                 生成Promptline脚本文件，用于个性化终端操作 [Promptline插件 ]
 nmap <leader>mp :!rm ~/backup/.promptline<cr><esc>:PromptlineSnapshot ~/backup/.promptline airline<cr>
@@ -747,11 +740,23 @@ nmap <leader>ev <esc>:e $MYVIMRC<cr>
 imap <leader>php <esc>:se ft=php<cr>li
 nmap <leader>php <esc>:se ft=php<cr>
 
-" \ruby                一键切换到Ruby语法高亮
+" \tw1                一键切换到html.twig语法高亮
+imap <leader>tw1 <esc>:se ft=html.twig<cr>li
+nmap <leader>tw1 <esc>:se ft=html.twig<cr>
+
+" \tw2                一键切换到jinja.twig语法高亮
+imap <leader>tw2 <esc>:se ft=jinja.twig<cr>li
+nmap <leader>tw2 <esc>:se ft=jinja.twig<cr>
+
+" \tw3                一键切换到htmldjango.twig语法高亮
+imap <leader>tw3 <esc>:se ft=htmldjango.twig<cr>li
+nmap <leader>tw3 <esc>:se ft=htmldjango.twig<cr>
+
+" \ruby               一键切换到Ruby语法高亮
 imap <leader>ruby <esc>:se ft=ruby<cr>li
 nmap <leader>ruby <esc>:se ft=ruby<cr>
 
-" \eruby                一键切换到eRuby语法高亮
+" \eruby              一键切换到eRuby语法高亮
 imap <leader>eruby <esc>:se ft=eruby<cr>li
 nmap <leader>eruby <esc>:se ft=eruby<cr>
 
@@ -773,7 +778,15 @@ nmap <leader>html <esc>:se ft=html<cr>
 " 编译并运行
 func! Compile_Run_Code()
     exec 'w'
-    if &filetype == 'c'
+    if &filetype == 'asm'
+        if g:isWIN
+            exec '!nasm -f win64 %:t && gcc -m64 -o %:r %:r.obj && %:r.exe'
+        elseif g:isMAC
+            exec '!nasm -f macho64 %:t && ld -macosx_version_min 10.7.0 -lSystem -o %:r %:r.o && ./%:r'
+        else
+            exec '!nasm -f elf64 %:t && gcc -nostdlib -o %:r %:r.o && ./%:r'
+        endif
+    elseif &filetype == 'c'
         if g:isWIN
             exec '!gcc -Wall -std=c11 -o %:r %:t && %:r.exe'
         else
@@ -784,14 +797,6 @@ func! Compile_Run_Code()
             exec '!g++ -Wall -std=c++14 -o %:r %:t && %:r.exe'
         else
             exec '!clang++ -Wall -std=c++14 -o %:r %:t && ./%:r'
-        endif
-    elseif &filetype == 'objc'
-        if g:isMAC
-            exec '!clang -fobjc-arc -framework Foundation %:t -o %:r && ./%:r'
-        endif
-    elseif &filetype == 'swift'
-        if g:isMAC
-            exec '!swift %:t'
         endif
     elseif &filetype == 'd'
         if g:isWIN
@@ -817,46 +822,32 @@ func! Compile_Run_Code()
         else
             exec '!nim c %:t && ./%:r'
         endif
-    elseif &filetype == 'crystal'
-        if g:isWIN
-            exec '!crystal build %:t && %:r.exe'
-        else
-            exec '!crystal build %:t && ./%:r'
-        endif
     elseif &filetype == 'vala'
         if g:isWIN
             exec '!valac %:t && %:r.exe'
         else
             exec '!valac %:t && ./%:r'
         endif
+    elseif &filetype == 'objc'
+        if g:isMAC
+            exec '!clang -fobjc-arc -framework Foundation %:t -o %:r && ./%:r'
+        endif
+    elseif &filetype == 'swift'
+        if g:isMAC
+            exec '!swift %:t'
+        endif
     elseif &filetype == 'java'
         exec '!javac %:t && java %:r'
-    elseif &filetype == 'groovy'
-        exec '!groovy %:t'
-    elseif &filetype == 'kotlin'
-        exec '!kotlinc %:t -include-runtime -d %:r.jar && kotlin %:r.jar'
-    elseif &filetype == 'scala'
-        exec '!scala %:t'
     elseif &filetype == 'cs'
         if g:isWIN
             exec '!csc %:t && %:r.exe'
         else
             exec '!mcs %:t && mono %:r.exe'
         endif
-    elseif &filetype == 'fsharp'
-        if g:isWIN
-            exec '!fsc %:t && %:r.exe'
-        else
-            exec '!fsharpc %:t && mono %:r.exe'
-        endif
     elseif &filetype == 'erlang'
         exec '!escript %:t'
-    elseif &filetype == 'elixir'
-        exec '!elixir %:t'
     elseif &filetype == 'scheme' || &filetype == 'racket'
         exec '!racket -fi %:t'
-    elseif &filetype == 'newlisp'
-        exec '!newlisp %:t'
     elseif &filetype == 'lisp'
         exec '!sbcl --load %:t'
     elseif &filetype == 'ocaml'
@@ -878,27 +869,43 @@ func! Compile_Run_Code()
     elseif &filetype == 'php'
         exec '!php %:t'
     elseif &filetype == 'python'
-        exec '!python3 %:t'
+        exec '!python %:t'
     elseif &filetype == 'ruby'
         exec '!ruby %:t'
+    elseif &filetype == 'groovy'
+        exec '!groovy %:t'
+    elseif &filetype == 'kotlin'
+        exec '!kotlinc-jvm %:t -include-runtime -d %:r.jar && java -jar %:r.jar'
+    elseif &filetype == 'scala'
+        exec '!scala %:t'
+    elseif &filetype == 'clojure'
+        exec '!clojure -i %:t -r'
+    elseif &filetype == 'fsharp'
+        if g:isWIN
+            exec '!fsc %:t && %:r.exe'
+        else
+            exec '!fsharpc %:t && ./%:r'
+        endif
+    elseif &filetype == 'elixir'
+        exec '!elixir %:t'
     elseif &filetype == 'julia'
         exec '!julia %:t'
     elseif &filetype == 'dart'
         exec '!dart %:t'
-    elseif &filetype == 'elm'
-        exec '!elm make %:t'
     elseif &filetype == 'haxe'
         exec '!haxe -main %:r --interp'
-    elseif &filetype == 'javascript'
-        exec '!node %:t'
+    elseif &filetype == 'io'
+        exec '!io %:t'
+    elseif &filetype == 'r'
+        exec '!Rscript %:t'
     elseif &filetype == 'coffee'
         exec '!coffee -c %:t && node %:r.js'
     elseif &filetype == 'typescript'
         exec '!tsc %:t && node %:r.js'
     elseif &filetype == 'ls'
         exec '!lsc -c %:t && node %:r.js'
-    elseif &filetype == 'r'
-        exec '!Rscript %:t'
+    elseif &filetype == 'javascript'
+        exec '!node %:t'
     elseif &filetype == 'sh'
         exec '!bash %:t'
     endif
@@ -933,14 +940,189 @@ let blog.auto_export       = 1
 let g:vimwiki_list         = [blog]
 
 
-" ======= 加载自定义工程配置文件 ======= "
 
-if g:isWIN
-    if filereadable($VIM.'/_self.vim')
-        source $VIM/_self.vim
-    end
-else
-    if filereadable($HOME.'/.self.vim')
-        source $HOME/.self.vim
-    end
-end
+
+" ======= 设置NERDTree打开时的目录 ======= "
+cd E:/python_projects
+map <F2> :NERDTreeToggle<CR>
+" open Nerd Tree in folder of file in active buffer
+map <Leader>nt :NERDTree %:p:h<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") |q| endif
+
+
+" ======= NERDTree 一直显示书签======= "
+"autocmd VimEnter * NERDTree
+let NERDTreeShowBookmarks=1
+
+
+
+" ======= 使nerd-tree 能够copy文件 ======= " 
+let g:NERDTreeCopyCmd = 'cp -r '
+
+
+
+
+" ======= ctrlp 显示更多的文件 ======= " 
+let g:ctrlp_match_window = 'results:400'
+    
+    
+
+" ======= 恢复上次文件打开位置 ======= "  
+set viminfo='10,\"100,:20,%,n~/.viminfo
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+
+
+" ======= 设置当文件被外部改变的时侯自动读入文件 ======= "  
+if exists("&autoread")
+    set autoread
+endif
+
+
+"设置静音模式
+"set noerrorbells
+"set novisualbell
+"set t_vb=
+
+
+
+" ======= 设置session不自动load ======= " 
+let g:session_autoload = 'no'
+
+
+
+
+
+" ======= easymotion行内跳转设置 ======= " 
+let g:EasyMotion_leader_key = '<Space>'
+map <Leader>l <Plug>(easymotion-lineforward)
+map <Leader>h <Plug>(easymotion-linebackward)
+
+let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+" Require tpope/vim-repeat to enable dot repeat support
+" Jump to anywhere with only `s{char}{target}`
+" `s<CR>` repeat last find motion.
+nmap s <Plug>(easymotion-s)
+
+
+
+
+
+
+" ======= vim-startify 配置 ======= " 
+autocmd User Startified setlocal cursorline
+nnoremap 's :Startify<cr>
+
+let g:startify_enable_special         = 0
+let g:startify_files_number           = 8
+let g:startify_relative_path          = 1
+let g:startify_change_to_dir          = 1
+let g:startify_session_autoload       = 1
+let g:startify_session_persistence    = 1
+let g:startify_session_delete_buffers = 1
+
+let g:startify_list_order = [
+  \ ['   LRU:'],
+  \ 'files',
+  \ ['   LRU within this dir:'],
+  \ 'dir',
+  \ ['   Sessions:'],
+  \ 'sessions',
+  \ ['   Bookmarks:'],
+  \ 'bookmarks',
+  \ ]
+
+let g:startify_skiplist = [
+            \ 'COMMIT_EDITMSG',
+            \ 'bundle/.*/doc',
+            \ '/data/repo/neovim/runtime/doc',
+            \ '/Users/mhi/local/vim/share/vim/vim74/doc',
+            \ ]
+
+            
+let g:startify_custom_header =[ 
+      \'|+-------------------------------+|',
+      \'| Purpose, Positive, Optimistic |',
+      \'|+-------------------------------+|',
+      \]
+            
+            
+let g:startify_custom_footer =[ 
+      \'|+-------------------------------+|',
+      \'|  1.01 ^365 = 37.78  |',
+      \'|  0.99 ^365 = 0.025  |',
+      \'|+-------------------------------+|',
+      \]
+
+
+hi StartifyBracket ctermfg=240
+hi StartifyFile    ctermfg=147
+hi StartifyFooter  ctermfg=240
+hi StartifyHeader  ctermfg=114
+hi StartifyNumber  ctermfg=215
+hi StartifyPath    ctermfg=245
+hi StartifySlash   ctermfg=240
+hi StartifySpecial ctermfg=240
+
+
+
+
+" ======= 使用snipmate ======= " 
+let g:snippets_dir = 'C:/Program Files (x86)/Vim/vimfiles/snippets'
+ 
+ 
+ 
+ 
+ " ======= taglist的设置,供txtbrowser使用 ======= " 
+ " TagList options
+let Tlist_Close_On_Select = 1 "close taglist window once we selected something
+let Tlist_Exit_OnlyWindow = 1 "if taglist window is the only window left, exit vim
+let Tlist_Show_Menu = 1 "show Tags menu in gvim
+let Tlist_Show_One_File = 1 "show tags of only one file
+let Tlist_GainFocus_On_ToggleOpen = 1 "automatically switch to taglist window
+let Tlist_Highlight_Tag_On_BufEnter = 1 "highlight current tag in taglist window
+let Tlist_Process_File_Always = 1 "even without taglist window, create tags file, required for displaying tag in statusline
+let Tlist_Use_Right_Window = 1 "display taglist window on the right
+let Tlist_Display_Prototype = 1 "display full prototype instead of just function name
+
+let g:Tlist_Ctags_Cmd = 'C:/ctags.exe'
+
+nnoremap <F5> :TlistToggle<cr>
+nnoremap <F6> :TlistShowPrototype<cr>
+nnoremap tlu :TlistUpdate<cr>
+
+
+set statusline=[%n]\ %<%f\ %([%1*%M%*%R%Y]%)\ \ \ [%{Tlist_Get_Tagname_By_Line()}]\ %=%-19(\LINE\ [%l/%L]\ COL\ [%02c%03V]%)\ %P
+ 
+ 
+ 
+
+"==================easytags+vim-shell 为ctags提供自动更新功能================
+let g:easytags_file = '~/.vim/tags'
+set tags=./tags
+let g:easytags_dynamic_files = 1
+let g:easytags_auto_highlight = 0
+let g:easytags_async = 1
+
+
+
+
+"===================在插入模式使用paste和copy功能=============
+"set pastetoggle=<F10>
+"inoremap <C-v> <F10><C-r>+<F10>
+"vnoremap <C-c> "+y
+"set clipboard=unnamedplus
+
+
+
+"===================markdown设置========
+let g:table_mode_corner="|"
+
+
+
+"============open file in browser=========
+nnoremap <Leader>ch :update<Bar>silent ! start %:p<CR>
+
+
+"===============pymode使用python3============
+let g:pymode_python = 'python3'
