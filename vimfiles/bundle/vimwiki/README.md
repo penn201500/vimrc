@@ -1,25 +1,38 @@
-A Personal Wiki For Vim
+A Personal Wiki For Vim Plugin
 ==============================================================================
 
-![screenshot1](doc/screenshot_1.png)
-![screenshot2](doc/screenshot_2.png)
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2226
+
+Screenshots are available on http://code.google.com/p/vimwiki/ 
+There are also zipped vimwiki files there in case you do not like vimball archives.
+
+
+Prerequisites
+==============================================================================
+
+Make sure you have these settings in your vimrc file: 
+
+    set nocompatible
+    filetype plugin on
+    syntax on
+
+Without them Vimwiki will not work properly.
+
 
 Intro
-------------------------------------------------------------------------------
-
+==============================================================================
 Vimwiki is a personal wiki for Vim -- a number of linked text files that have
 their own syntax highlighting.
 
-With Vimwiki you can:
+With vimwiki you can:
 
- * organize notes and ideas
- * manage todo-lists
- * write documentation
- * maintain a diary
- * export everything to HTML
+ * organize notes and ideas;
+ * manage todo-lists;
+ * write documentation.
 
-To do a quick start press `<Leader>ww` (this is usually `\ww`) to go to your index
-wiki file.  By default it is located in `~/vimwiki/index.wiki`.
+To do a quick start press <Leader>ww (this is usually \ww) to go to your index
+wiki file.  By default it is located in: 
+    ~/vimwiki/index.wiki
 
 Feed it with the following example:
 
@@ -28,35 +41,32 @@ Feed it with the following example:
         * Project Gutenberg -- good books are power.
         * Scratchpad -- various temporary stuff.
 
-Place your cursor on `Tasks` and press Enter to create a link.  Once pressed,
-`Tasks` will become `[[Tasks]]` -- a Vimwiki link.  Press Enter again to
+Place your cursor on 'Tasks' and press Enter to create a link.  Once pressed,
+'Tasks' will become '[[Tasks]]' -- a vimwiki link.  Press Enter again to
 open it.  Edit the file, save it, and then press Backspace to jump back to your
 index.
 
-A Vimwiki link can be constructed from more than one word.  Just visually
-select the words to be linked and press Enter.  Try it with `Project Gutenberg`.
-The result should look something like:
+A vimwiki link can be constructed from more than one word.  Just visually
+select the words to be linked and press Enter.  Try it with 'Project
+Gutenberg'.  The result should look something like:
 
     = My knowledge base =
         * [[Tasks]] -- things to be done _yesterday_!!!
         * [[Project Gutenberg]] -- good books are power.
         * Scratchpad -- various temporary stuff.
 
+For the various options see `:h vimwiki-options`.
+
 
 Basic Markup
-------------------------------------------------------------------------------
+==============================================================================
+see `:h vimwiki-syntax`
 
-    = Header1 =
-    == Header2 ==
-    === Header3 ===
+    *bold* -- bold 
+    _italic_ -- italic 
 
-
-    *bold* -- bold text
-    _italic_ -- italic text
-
-    [[wiki link]] -- wiki link
-    [[wiki link|description]] -- wiki link with description
-
+    [[wiki link]] -- link with spaces
+    [[wiki link|description]] -- link with description
 
 Lists:
 
@@ -75,61 +85,45 @@ Lists:
         a) numbered list item 3
         b) numbered list item 4
 
-
-For other syntax elements, see `:h vimwiki-syntax`
+    = Header1 =
+    == Header2 ==
+    === Header3 ===
 
 
 Key bindings
-------------------------------------------------------------------------------
-
-normal mode:
-
- * `<Leader>ww` -- Open default wiki index file.
- * `<Leader>wt` -- Open default wiki index file in a new tab.
- * `<Leader>ws` -- Select and open wiki index file.
- * `<Leader>wd` -- Delete wiki file you are in.
- * `<Leader>wr` -- Rename wiki file you are in.
- * `<Enter>` -- Follow/Create wiki link
- * `<Shift-Enter>` -- Split and follow/create wiki link
- * `<Ctrl-Enter>` -- Vertical split and follow/create wiki link
- * `<Backspace>` -- Go back to parent(previous) wiki link
- * `<Tab>` -- Find next wiki link
- * `<Shift-Tab>` -- Find previous wiki link
-
-For more keys, see `:h vimwiki-mappings`
-
-
-Commands
-------------------------------------------------------------------------------
-
- * `:Vimwiki2HTML` -- Convert current wiki link to HTML
- * `:VimwikiAll2HTML` -- Convert all your wiki links to HTML
- * `:help vimwiki-commands` -- list all commands
-
-
-Installation
 ==============================================================================
+see `:h vimwiki-mappings`
 
-Prerequisites
-------------------------------------------------------------------------------
+normal mode: 
 
-Make sure you have these settings in your vimrc file:
+ * `<Leader>ww` -- Open default wiki index file. 
+ * `<Leader>wt` -- Open default wiki index file in a new tab. 
+ * `<Leader>ws` -- Select and open wiki index file. 
+ * `<Leader>wd` -- Delete wiki file you are in. 
+ * `<Leader>wr` -- Rename wiki file you are in. 
+ * `<Enter>` -- Folow/Create wiki link 
+ * `<Shift-Enter>` -- Split and folow/create wiki link 
+ * `<Ctrl-Enter>` -- Vertical split and folow/create wiki link 
+ * `<Backspace>` -- Go back to parent(previous) wiki link 
+ * `<Tab>` -- Find next wiki link 
+ * `<Shift-Tab>` -- Find previous wiki link 
 
-    set nocompatible
-    filetype plugin on
-    syntax on
 
-Without them Vimwiki will not work properly.
+Commands 
+============================================================================== 
 
+ * `:Vimwiki2HTML` -- Convert current wiki link to HTML 
+ * `:VimwikiAll2HTML` -- Convert all your wiki links to HTML 
+ * `:help vimwiki-commands` -- list all commands
+ 
+Install details
+============================================================================== 
 
-Installation using [Pathogen](http://www.vim.org/scripts/script.php?script_id=2332)
-------------------------------------------------------------------------------
+Using pathogen (http://www.vim.org/scripts/script.php?script_id=2332 )
 
     cd ~/.vim
     mkdir bundle
     cd bundle
-    git clone https://github.com/vimwiki/vimwiki.git
+    git clone git://github.com/vim-scripts/vimwiki.git
 
-Or download the [zip archive](https://github.com/vimwiki/vimwiki/archive/master.zip) and extract it in `~/.vim/bundle/`
-
-Then launch Vim, run `:Helptags` and then `:help vimwiki` to verify it was installed.
+Then launch vim, run `:Helptags` and then `:help vimwiki` to verify it was installed.

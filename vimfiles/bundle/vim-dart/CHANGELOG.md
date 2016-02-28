@@ -1,10 +1,3 @@
-#### 0.2.1
-   * Added `DartAnalyzer` and `Dart2Js`.
-   * Renamed `DartFormat` to `DartFmt`.
-
-#### 0.2.0
-   * `dartformat` renamed to `dartfmt`.
-
 #### 0.1.1
    * Added DartFormat command.
 

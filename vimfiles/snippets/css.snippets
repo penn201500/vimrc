@@ -1,290 +1,987 @@
-snippet /       单行注释
-	// ${0}
-snippet //      多行注释
-	/*${0}*/
 snippet .
-	{
-	    ${0}
+	${1} {
+		${0}
 	}
-# 全局相关
-snippet im      导入外部样式文件
-	@import "${1}.css"${2};${0}
-snippet ch      在外部样式文件中指定字符编码
-	@charset "${1:utf-8}";${0}
-snippet me      指定媒体类型和查询条件
-	@media ${1} {${0}}
-snippet ff      设置嵌入HTML文档的字体
-	@font-face {${0}}
-snippet pa      设置页面容器的版式、方向、边空等
-	@page ${1} {${0}}
-snippet kf      指定动画名称和动画效果
-	@keyframes ${1} {${0}}
-# 背景属性
-snippet ba      所有背景属性
-	background: ${1};${0}
-snippet bac     背景颜色
-	background-color: ${1};${0}
-snippet bai     背景图片
-	background-image: ${1};${0}
-snippet bap     背景图片的开始位置
-	background-position: ${1};${0}
-snippet baa     背景图片是否固定或随页面滚动
-	background-attachment: ${1};${0}
-snippet bar     是否以及如何重复背景图片
-	background-repeat: ${1};${0}
-snippet bacl    背景的绘制区域
-	background-clip: ${1};${0}
-snippet bao     背景图片的定位区域
-	background-origin: ${1};${0}
-snippet bas     背景图片的尺寸
-	background-size: ${1};${0}
-# 边框属性
-snippet bo      所有边框属性
-	border: ${1};${0}
-snippet boc     所有边框颜色
-	border-color: ${1};${0}
-snippet bos     所有边框样式
-	border-style: ${1};${0}
-snippet bow     所有边框宽度
-	border-width: ${1};${0}
-snippet bor     所有半径属性
-	border-radius: ${1};${0}
-snippet bol     所有左边框属性
-	border-left: ${1};${0}
-snippet bolc    左边框颜色
-	border-left-color: ${1};${0}
-snippet bols    左边框样式
-	border-left-style: ${1};${0}
-snippet bolw    左边框宽度
-	border-left-width: ${1};${0}
-snippet bor     所有右边框属性
-	border-right: ${1};${0}
-snippet borc    右边框颜色
-	border-right-color: ${1};${0}
-snippet bors    右边框样式
-	border-right-style: ${1};${0}
-snippet borw    右边框宽度
-	border-right-width: ${1};${0}
-snippet bob     所有下边框属性
-	border-bottom: ${1};${0}
-snippet bobc    下边框颜色
-	border-bottom-color: ${1};${0}
-snippet bobs    下边框样式
-	border-bottom-style: ${1};${0}
-snippet bobw    下边框宽度
-	border-bottom-width: ${1};${0}
-snippet boblr   边框左下角的形状
-	border-bottom-left-radius: ${1};${0}
-snippet bobrr   边框右下角的形状
-	border-bottom-right-radius: ${1};${0}
-snippet bot     所有上边框属性
-	border-top: ${1};${0}
-snippet botc    上边框颜色
-	border-top-color: ${1};${0}
-snippet bots    上边框样式
-	border-top-style: ${1};${0}
-snippet botw    上边框宽度
-	border-top-width: ${1};${0}
-snippet botlr   边框左上角的形状
-	border-top-left-radius: ${1};${0}
-snippet botrr   边框右上角的形状
-	border-top-right-radius: ${1};${0}
-snippet ou      所有轮廓属性
-	outline: ${1};${0}
-snippet ouc     轮廓颜色
-	outline-color: ${1};${0}
-snippet ous     轮廓样式
-	outline-style: ${1};${0}
-snippet ouw     轮廓宽度
-	outline-width: ${1};${0}
-snippet boi     所有image属性
-	border-image: ${1};${0}
-snippet boio    边框图片区域超出边框的量
-	border-image-outset: ${1};${0}
-snippet boir    图片边框是否平铺[repeated]、铺满[rounded]、拉伸[stretched]
-	border-image-repeat: ${1};${0}
-snippet bois    用作边框的图片
-	border-image-source: ${1};${0}
-snippet boisl   图片边框向内偏移
-	border-image-slice: ${1};${0}
-snippet boiw    图片边框宽度
-	border-image-width: ${1};${0}
-snippet bxs     向边框添加一个或多个阴影
-	box-shadow: ${1};${0}
-# 文本属性
-snippet co      文本颜色
-	color: ${1};${0}
-snippet dir     文本方向
-	direction: ${1};${0}
-snippet les     字符间距
-	letter-spacing: ${1};${0}
-snippet lih     行高
-	line-height: ${1};${0}
-snippet unb     文本方向
-	unicode-bidi: ${1};${0}
-snippet whs     处理元素中的空白
-	white-space: ${1};${0}
-snippet wos     单词间距
-	word-spacing: ${1};${0}
-snippet tea     文本水平对齐方式
-	text-align: ${1};${0}
-snippet ted     文本的装饰效果
-	text-decoration: ${1};${0}
-snippet tei     文本块首行的缩进
-	text-indent: ${1};${0}
-snippet tes     文本的阴影效果
-	text-shadow: ${1};${0}
-snippet tet     文本的大小写
-	text-transform: ${1};${0}
-# 字体属性
-snippet fo      所有字体属性
-	font: ${1};${0}
-snippet fof     字体系列
-	font-family: ${1};${0}
-snippet fos     字体样式
-	font-style: ${1};${0}
-snippet fow     字体粗细
-	font-weight: ${1};${0}
-snippet fosz    字体尺寸
-	font-size: ${1};${0}
-snippet fosza   aspect值
-	font-size-adjust: ${1};${0}
-snippet fost    收缩或拉伸当前字体系列
-	font-stretch: ${1};${0}
-snippet fov     是否以小型大写字母的字体显示文本
-	font-variant: ${1};${0}
-# 外边距属性
-snippet ma      所有外边距属性
-	margin: ${1};${0}
-snippet mal     左外边距
-	margin-left: ${1};${0}
-snippet mar     右外边距
-	margin-right: ${1};${0}
-snippet mab     下外边距
-	margin-bottom: ${1};${0}
-snippet mat     上外边距
-	margin-top: ${1};${0}
-# 内边距属性
-snippet pa      所有内边距属性
-	padding: ${1};${0}
-snippet pal     左内边距
-	padding-left: ${1};${0}
-snippet par     右内边距
-	padding-right: ${1};${0}
-snippet pab     下内边距
-	padding-bottom: ${1};${0}
-snippet pat     上内边距
-	padding-top: ${1};${0}
-# 列表属性
-snippet lis     所有列表属性
-	list-style: ${1};${0}
-snippet lisi    列表项标记图片
-	list-style-image: ${1};${0}
-snippet lisp    列表项标记位置
-	list-style-position: ${1};${0}
-snippet list    列表项标记类型
-	list-style-type: ${1};${0}
-# 内容生成
-snippet con     与:before和:after伪元素配合使用，用来插入生成内容
-	content: ${1};${0}
-snippet coi     递增或递减一个或多个计数器
-	counter-increment: ${1};${0}
-snippet cor     创建或重置一个或多个计数器
-	counter-reset: ${1};${0}
-snippet qu      嵌套引用的引号类型
-	quotes: ${1};${0}
-# 尺寸属性
-snippet he      元素高度
-	height: ${1};${0}
-snippet wi      元素宽度
-	width: ${1};${0}
-snippet mah     元素的最大高度
-	max-height: ${1};${0}
-snippet maw     元素的最大宽度
-	max-width: ${1};${0}
-snippet mih     元素的最小高度
-	min-height: ${1};${0}
-snippet miw     元素的最小宽度
-	min-width: ${1};${0}
-# 定位属性
-snippet le      定位元素左外边距边界与其包含块左边界之间的偏移
-	left: ${1};${0}
-snippet ri      定位元素右外边距边界与其包含块右边界之间的偏移
-	right: ${1};${0}
-snippet bot     定位元素下外边距边界与其包含块下边界之间的偏移
-	bottom: ${1};${0}
-snippet to      定位元素上外边距边界与其包含块上边界之间的偏移
-	top: ${1};${0}
-snippet fl      浮动
-	float: ${1};${0}
-snippet vi      是否可见
-	visibility: ${1};${0}
-snippet po      定位类型
-	position: ${1};${0}
-snippet cu      光标形状
-	cursor: ${1};${0}
-snippet zi      堆叠顺序
-	z-index: ${1};${0}
-snippet cl      指定元素哪一侧不允许其他浮动元素
-	clear: ${1};${0}
-snippet cli     剪裁绝对定位元素
-	clip: ${1};${0}
-snippet di      元素应该生成的框的类型
-	display: ${1};${0}
-snippet ov      内容溢出元素框时的处理
-	overflow: ${1};${0}
-snippet vea     垂直对齐方式
-	vertical-align: ${1};${0}
-# 打印属性
-snippet wid     当元素内部发生分页时必须在页面顶部保留的最少行数
-	widows: ${1};${0}
-snippet or      当元素内部发生分页时必须在页面底部保留的最少行数
-	orphans: ${1};${0}
-snippet pabb    元素前的分页行为
-	page-break-before: ${1};${0}
-snippet paba    元素后的分页行为
-	page-break-after: ${1};${0}
-snippet pabi    元素内的分页行为
-	page-break-inside: ${1};${0}
-# 表格属性
-snippet tal     表格布局
-	table-layout: ${1};${0}
-snippet cas     表格标题的位置
-	caption-side: ${1};${0}
-snippet bosp    相邻单元格边框之间的距离
-	border-spacing: ${1};${0}
-snippet boc     是否合并表格边框
-	border-collapse: ${1};${0}
-snippet emc     是否显示表格空单元格上的边框和背景
-	empty-cells: ${1};${0}
-# 动画属性
-snippet ke      规定动画
-	@keyframes: ${1};${0}
-snippet an      所有动画属性 [除了animation-play-state]
-	animation: ${1};${0}
-snippet ann     动画的名字
-	animation-name: ${1};${0}
-snippet and     动画完成一个周期所花费的时间
-	animation-duration: ${1};${0}
-snippet antf    动画的速度曲线
-	animation-timing-function: ${1};${0}
-snippet ande    动画何时开始
-	animation-delay: ${1};${0}
-snippet anic    动画被播放的次数
-	animation-iteration-count: ${1};${0}
-snippet andi    动画是否在下一周期逆向播放
-	animation-direction: ${1};${0}
-snippet anps    动画是否在运行或暂停
-	animation-play-state: ${1};${0}
-# 浏览器特有属性
-snippet -m      Internet Explorer
-	-ms-${0}
-snippet -w      Chrome、Safari、Opera（版本号大于15的版本）
-	-webkit-${0}
-snippet -m      Firefox
-	-moz-${0}
-# 其他
-snippet imp     增加权重
-	!important${0}
-snippet <       { ... }
-	{ ${0} }
+snippet !
+	 !important
+snippet bdi:m+
+	-moz-border-image: url(${1}) ${2:0} ${3:0} ${4:0} ${5:0} ${6:stretch} ${0:stretch};
+snippet bdi:m
+	-moz-border-image: ${0};
+snippet bdrz:m
+	-moz-border-radius: ${0};
+snippet bxsh:m+
+	-moz-box-shadow: ${1:0} ${2:0} ${3:0} #${0:000};
+snippet bxsh:m
+	-moz-box-shadow: ${0};
+snippet bdi:w+
+	-webkit-border-image: url(${1}) ${2:0} ${3:0} ${4:0} ${5:0} ${6:stretch} ${0:stretch};
+snippet bdi:w
+	-webkit-border-image: ${0};
+snippet bdrz:w
+	-webkit-border-radius: ${0};
+snippet bxsh:w+
+	-webkit-box-shadow: ${1:0} ${2:0} ${3:0} #${0:000};
+snippet bxsh:w
+	-webkit-box-shadow: ${0};
+snippet @f
+	@font-face {
+		font-family: ${1};
+		src: url(${0});
+	}
+snippet @i
+	@import url(${0});
+snippet @m
+	@media ${1:print} {
+		${0}
+	}
+snippet bg+
+	background: #${1:FFF} url(${2}) ${3:0} ${4:0} ${0:no-repeat};
+snippet bga
+	background-attachment: ${0};
+snippet bga:f
+	background-attachment: fixed;
+snippet bga:s
+	background-attachment: scroll;
+snippet bgbk
+	background-break: ${0};
+snippet bgbk:bb
+	background-break: bounding-box;
+snippet bgbk:c
+	background-break: continuous;
+snippet bgbk:eb
+	background-break: each-box;
+snippet bgcp
+	background-clip: ${0};
+snippet bgcp:bb
+	background-clip: border-box;
+snippet bgcp:cb
+	background-clip: content-box;
+snippet bgcp:nc
+	background-clip: no-clip;
+snippet bgcp:pb
+	background-clip: padding-box;
+snippet bgc
+	background-color: #${0:FFF};
+snippet bgc:t
+	background-color: transparent;
+snippet bgi
+	background-image: url(${0});
+snippet bgi:n
+	background-image: none;
+snippet bgo
+	background-origin: ${0};
+snippet bgo:bb
+	background-origin: border-box;
+snippet bgo:cb
+	background-origin: content-box;
+snippet bgo:pb
+	background-origin: padding-box;
+snippet bgpx
+	background-position-x: ${0};
+snippet bgpy
+	background-position-y: ${0};
+snippet bgp
+	background-position: ${1:0} ${0:0};
+snippet bgr
+	background-repeat: ${0};
+snippet bgr:n
+	background-repeat: no-repeat;
+snippet bgr:x
+	background-repeat: repeat-x;
+snippet bgr:y
+	background-repeat: repeat-y;
+snippet bgr:r
+	background-repeat: repeat;
+snippet bgz
+	background-size: ${0};
+snippet bgz:a
+	background-size: auto;
+snippet bgz:ct
+	background-size: contain;
+snippet bgz:cv
+	background-size: cover;
+snippet bg
+	background: ${0};
+snippet bg:ie
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='${1}',sizingMethod='${0:crop}');
+snippet bg:n
+	background: none;
+snippet bd+
+	border: ${1:1px} ${2:solid} #${0:000};
+snippet bdb+
+	border-bottom: ${1:1px} ${2:solid} #${0:000};
+snippet bdbc
+	border-bottom-color: #${0:000};
+snippet bdbi
+	border-bottom-image: url(${0});
+snippet bdbi:n
+	border-bottom-image: none;
+snippet bdbli
+	border-bottom-left-image: url(${0});
+snippet bdbli:c
+	border-bottom-left-image: continue;
+snippet bdbli:n
+	border-bottom-left-image: none;
+snippet bdblrz
+	border-bottom-left-radius: ${0};
+snippet bdbri
+	border-bottom-right-image: url(${0});
+snippet bdbri:c
+	border-bottom-right-image: continue;
+snippet bdbri:n
+	border-bottom-right-image: none;
+snippet bdbrrz
+	border-bottom-right-radius: ${0};
+snippet bdbs
+	border-bottom-style: ${0};
+snippet bdbs:n
+	border-bottom-style: none;
+snippet bdbw
+	border-bottom-width: ${0};
+snippet bdb
+	border-bottom: ${0};
+snippet bdb:n
+	border-bottom: none;
+snippet bdbk
+	border-break: ${0};
+snippet bdbk:c
+	border-break: close;
+snippet bdcl
+	border-collapse: ${0};
+snippet bdcl:c
+	border-collapse: collapse;
+snippet bdcl:s
+	border-collapse: separate;
+snippet bdc
+	border-color: #${0:000};
+snippet bdci
+	border-corner-image: url(${0});
+snippet bdci:c
+	border-corner-image: continue;
+snippet bdci:n
+	border-corner-image: none;
+snippet bdf
+	border-fit: ${0};
+snippet bdf:c
+	border-fit: clip;
+snippet bdf:of
+	border-fit: overwrite;
+snippet bdf:ow
+	border-fit: overwrite;
+snippet bdf:r
+	border-fit: repeat;
+snippet bdf:sc
+	border-fit: scale;
+snippet bdf:sp
+	border-fit: space;
+snippet bdf:st
+	border-fit: stretch;
+snippet bdi
+	border-image: url(${1}) ${2:0} ${3:0} ${4:0} ${5:0} ${6:stretch} ${0:stretch};
+snippet bdi:n
+	border-image: none;
+snippet bdl+
+	border-left: ${1:1px} ${2:solid} #${0:000};
+snippet bdlc
+	border-left-color: #${0:000};
+snippet bdli
+	border-left-image: url(${0});
+snippet bdli:n
+	border-left-image: none;
+snippet bdls
+	border-left-style: ${0};
+snippet bdls:n
+	border-left-style: none;
+snippet bdlw
+	border-left-width: ${0};
+snippet bdl
+	border-left: ${0};
+snippet bdl:n
+	border-left: none;
+snippet bdlt
+	border-length: ${0};
+snippet bdlt:a
+	border-length: auto;
+snippet bdrz
+	border-radius: ${0};
+snippet bdr+
+	border-right: ${1:1px} ${2:solid} #${0:000};
+snippet bdrc
+	border-right-color: #${0:000};
+snippet bdri
+	border-right-image: url(${0});
+snippet bdri:n
+	border-right-image: none;
+snippet bdrs
+	border-right-style: ${0};
+snippet bdrs:n
+	border-right-style: none;
+snippet bdrw
+	border-right-width: ${0};
+snippet bdr
+	border-right: ${0};
+snippet bdr:n
+	border-right: none;
+snippet bdsp
+	border-spacing: ${0};
+snippet bds
+	border-style: ${0};
+snippet bds:ds
+	border-style: dashed;
+snippet bds:dtds
+	border-style: dot-dash;
+snippet bds:dtdtds
+	border-style: dot-dot-dash;
+snippet bds:dt
+	border-style: dotted;
+snippet bds:db
+	border-style: double;
+snippet bds:g
+	border-style: groove;
+snippet bds:h
+	border-style: hidden;
+snippet bds:i
+	border-style: inset;
+snippet bds:n
+	border-style: none;
+snippet bds:o
+	border-style: outset;
+snippet bds:r
+	border-style: ridge;
+snippet bds:s
+	border-style: solid;
+snippet bds:w
+	border-style: wave;
+snippet bdt+
+	border-top: ${1:1px} ${2:solid} #${0:000};
+snippet bdtc
+	border-top-color: #${0:000};
+snippet bdti
+	border-top-image: url(${0});
+snippet bdti:n
+	border-top-image: none;
+snippet bdtli
+	border-top-left-image: url(${0});
+snippet bdtli:c
+	border-corner-image: continue;
+snippet bdtli:n
+	border-corner-image: none;
+snippet bdtlrz
+	border-top-left-radius: ${0};
+snippet bdtri
+	border-top-right-image: url(${0});
+snippet bdtri:c
+	border-top-right-image: continue;
+snippet bdtri:n
+	border-top-right-image: none;
+snippet bdtrrz
+	border-top-right-radius: ${0};
+snippet bdts
+	border-top-style: ${0};
+snippet bdts:n
+	border-top-style: none;
+snippet bdtw
+	border-top-width: ${0};
+snippet bdt
+	border-top: ${0};
+snippet bdt:n
+	border-top: none;
+snippet bdw
+	border-width: ${0};
+snippet bd
+	border: ${0};
+snippet bd:n
+	border: none;
+snippet b
+	bottom: ${0};
+snippet b:a
+	bottom: auto;
+snippet bxsh+
+	box-shadow: ${1:0} ${2:0} ${3:0} #${0:000};
+snippet bxsh
+	box-shadow: ${0};
+snippet bxsh:n
+	box-shadow: none;
+snippet bxz
+	box-sizing: ${0};
+snippet bxz:bb
+	box-sizing: border-box;
+snippet bxz:cb
+	box-sizing: content-box;
+snippet cps
+	caption-side: ${0};
+snippet cps:b
+	caption-side: bottom;
+snippet cps:t
+	caption-side: top;
+snippet cl
+	clear: ${0};
+snippet cl:b
+	clear: both;
+snippet cl:l
+	clear: left;
+snippet cl:n
+	clear: none;
+snippet cl:r
+	clear: right;
+snippet cp
+	clip: ${0};
+snippet cp:a
+	clip: auto;
+snippet cp:r
+	clip: rect(${1:0} ${2:0} ${3:0} ${0:0});
+snippet c
+	color: #${0:000};
+snippet ct
+	content: ${0};
+snippet ct:a
+	content: attr(${0});
+snippet ct:cq
+	content: close-quote;
+snippet ct:c
+	content: counter(${0});
+snippet ct:cs
+	content: counters(${0});
+snippet ct:ncq
+	content: no-close-quote;
+snippet ct:noq
+	content: no-open-quote;
+snippet ct:n
+	content: normal;
+snippet ct:oq
+	content: open-quote;
+snippet coi
+	counter-increment: ${0};
+snippet cor
+	counter-reset: ${0};
+snippet cur
+	cursor: ${0};
+snippet cur:a
+	cursor: auto;
+snippet cur:c
+	cursor: crosshair;
+snippet cur:d
+	cursor: default;
+snippet cur:ha
+	cursor: hand;
+snippet cur:he
+	cursor: help;
+snippet cur:m
+	cursor: move;
+snippet cur:p
+	cursor: pointer;
+snippet cur:t
+	cursor: text;
+snippet d
+	display: ${0};
+snippet d:mib
+	display: -moz-inline-box;
+snippet d:mis
+	display: -moz-inline-stack;
+snippet d:b
+	display: block;
+snippet d:cp
+	display: compact;
+snippet d:ib
+	display: inline-block;
+snippet d:itb
+	display: inline-table;
+snippet d:i
+	display: inline;
+snippet d:li
+	display: list-item;
+snippet d:n
+	display: none;
+snippet d:ri
+	display: run-in;
+snippet d:tbcp
+	display: table-caption;
+snippet d:tbc
+	display: table-cell;
+snippet d:tbclg
+	display: table-column-group;
+snippet d:tbcl
+	display: table-column;
+snippet d:tbfg
+	display: table-footer-group;
+snippet d:tbhg
+	display: table-header-group;
+snippet d:tbrg
+	display: table-row-group;
+snippet d:tbr
+	display: table-row;
+snippet d:tb
+	display: table;
+snippet ec
+	empty-cells: ${0};
+snippet ec:h
+	empty-cells: hide;
+snippet ec:s
+	empty-cells: show;
+snippet exp
+	expression()
+snippet fl
+	float: ${0};
+snippet fl:l
+	float: left;
+snippet fl:n
+	float: none;
+snippet fl:r
+	float: right;
+snippet f+
+	font: ${1:1em} ${2:Arial},${0:sans-serif};
+snippet fef
+	font-effect: ${0};
+snippet fef:eb
+	font-effect: emboss;
+snippet fef:eg
+	font-effect: engrave;
+snippet fef:n
+	font-effect: none;
+snippet fef:o
+	font-effect: outline;
+snippet femp
+	font-emphasize-position: ${0};
+snippet femp:a
+	font-emphasize-position: after;
+snippet femp:b
+	font-emphasize-position: before;
+snippet fems
+	font-emphasize-style: ${0};
+snippet fems:ac
+	font-emphasize-style: accent;
+snippet fems:c
+	font-emphasize-style: circle;
+snippet fems:ds
+	font-emphasize-style: disc;
+snippet fems:dt
+	font-emphasize-style: dot;
+snippet fems:n
+	font-emphasize-style: none;
+snippet fem
+	font-emphasize: ${0};
+snippet ff
+	font-family: ${0};
+snippet ff:c
+	font-family: ${0:'Monotype Corsiva','Comic Sans MS'},cursive;
+snippet ff:f
+	font-family: ${0:Capitals,Impact},fantasy;
+snippet ff:m
+	font-family: ${0:Monaco,'Courier New'},monospace;
+snippet ff:ss
+	font-family: ${0:Helvetica,Arial},sans-serif;
+snippet ff:s
+	font-family: ${0:Georgia,'Times New Roman'},serif;
+snippet fza
+	font-size-adjust: ${0};
+snippet fza:n
+	font-size-adjust: none;
+snippet fz
+	font-size: ${0};
+snippet fsm
+	font-smooth: ${0};
+snippet fsm:aw
+	font-smooth: always;
+snippet fsm:a
+	font-smooth: auto;
+snippet fsm:n
+	font-smooth: never;
+snippet fst
+	font-stretch: ${0};
+snippet fst:c
+	font-stretch: condensed;
+snippet fst:e
+	font-stretch: expanded;
+snippet fst:ec
+	font-stretch: extra-condensed;
+snippet fst:ee
+	font-stretch: extra-expanded;
+snippet fst:n
+	font-stretch: normal;
+snippet fst:sc
+	font-stretch: semi-condensed;
+snippet fst:se
+	font-stretch: semi-expanded;
+snippet fst:uc
+	font-stretch: ultra-condensed;
+snippet fst:ue
+	font-stretch: ultra-expanded;
+snippet fs
+	font-style: ${0};
+snippet fs:i
+	font-style: italic;
+snippet fs:n
+	font-style: normal;
+snippet fs:o
+	font-style: oblique;
+snippet fv
+	font-variant: ${0};
+snippet fv:n
+	font-variant: normal;
+snippet fv:sc
+	font-variant: small-caps;
+snippet fw
+	font-weight: ${0};
+snippet fw:b
+	font-weight: bold;
+snippet fw:br
+	font-weight: bolder;
+snippet fw:lr
+	font-weight: lighter;
+snippet fw:n
+	font-weight: normal;
+snippet f
+	font: ${0};
+snippet h
+	height: ${0};
+snippet h:a
+	height: auto;
+snippet l
+	left: ${0};
+snippet l:a
+	left: auto;
+snippet lts
+	letter-spacing: ${0};
+snippet lh
+	line-height: ${0};
+snippet lisi
+	list-style-image: url(${0});
+snippet lisi:n
+	list-style-image: none;
+snippet lisp
+	list-style-position: ${0};
+snippet lisp:i
+	list-style-position: inside;
+snippet lisp:o
+	list-style-position: outside;
+snippet list
+	list-style-type: ${0};
+snippet list:c
+	list-style-type: circle;
+snippet list:dclz
+	list-style-type: decimal-leading-zero;
+snippet list:dc
+	list-style-type: decimal;
+snippet list:d
+	list-style-type: disc;
+snippet list:lr
+	list-style-type: lower-roman;
+snippet list:n
+	list-style-type: none;
+snippet list:s
+	list-style-type: square;
+snippet list:ur
+	list-style-type: upper-roman;
+snippet lis
+	list-style: ${0};
+snippet lis:n
+	list-style: none;
+snippet mb
+	margin-bottom: ${0};
+snippet mb:a
+	margin-bottom: auto;
+snippet ml
+	margin-left: ${0};
+snippet ml:a
+	margin-left: auto;
+snippet mr
+	margin-right: ${0};
+snippet mr:a
+	margin-right: auto;
+snippet mt
+	margin-top: ${0};
+snippet mt:a
+	margin-top: auto;
+snippet m
+	margin: ${0};
+snippet m:4
+	margin: ${1:0} ${2:0} ${3:0} ${0:0};
+snippet m:3
+	margin: ${1:0} ${2:0} ${0:0};
+snippet m:2
+	margin: ${1:0} ${0:0};
+snippet m:0
+	margin: 0;
+snippet m:a
+	margin: auto;
+snippet mah
+	max-height: ${0};
+snippet mah:n
+	max-height: none;
+snippet maw
+	max-width: ${0};
+snippet maw:n
+	max-width: none;
+snippet mih
+	min-height: ${0};
+snippet miw
+	min-width: ${0};
+snippet op
+	opacity: ${0};
+snippet op:ie
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=${0:100});
+snippet op:ms
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=${0:100})';
+snippet orp
+	orphans: ${0};
+snippet o+
+	outline: ${1:1px} ${2:solid} #${0:000};
+snippet oc
+	outline-color: ${0:#000};
+snippet oc:i
+	outline-color: invert;
+snippet oo
+	outline-offset: ${0};
+snippet os
+	outline-style: ${0};
+snippet ow
+	outline-width: ${0};
+snippet o
+	outline: ${0};
+snippet o:n
+	outline: none;
+snippet ovs
+	overflow-style: ${0};
+snippet ovs:a
+	overflow-style: auto;
+snippet ovs:mq
+	overflow-style: marquee;
+snippet ovs:mv
+	overflow-style: move;
+snippet ovs:p
+	overflow-style: panner;
+snippet ovs:s
+	overflow-style: scrollbar;
+snippet ovx
+	overflow-x: ${0};
+snippet ovx:a
+	overflow-x: auto;
+snippet ovx:h
+	overflow-x: hidden;
+snippet ovx:s
+	overflow-x: scroll;
+snippet ovx:v
+	overflow-x: visible;
+snippet ovy
+	overflow-y: ${0};
+snippet ovy:a
+	overflow-y: auto;
+snippet ovy:h
+	overflow-y: hidden;
+snippet ovy:s
+	overflow-y: scroll;
+snippet ovy:v
+	overflow-y: visible;
+snippet ov
+	overflow: ${0};
+snippet ov:a
+	overflow: auto;
+snippet ov:h
+	overflow: hidden;
+snippet ov:s
+	overflow: scroll;
+snippet ov:v
+	overflow: visible;
+snippet pb
+	padding-bottom: ${0};
+snippet pl
+	padding-left: ${0};
+snippet pr
+	padding-right: ${0};
+snippet pt
+	padding-top: ${0};
+snippet p
+	padding: ${0};
+snippet p:4
+	padding: ${1:0} ${2:0} ${3:0} ${0:0};
+snippet p:3
+	padding: ${1:0} ${2:0} ${0:0};
+snippet p:2
+	padding: ${1:0} ${0:0};
+snippet p:0
+	padding: 0;
+snippet pgba
+	page-break-after: ${0};
+snippet pgba:aw
+	page-break-after: always;
+snippet pgba:a
+	page-break-after: auto;
+snippet pgba:l
+	page-break-after: left;
+snippet pgba:r
+	page-break-after: right;
+snippet pgbb
+	page-break-before: ${0};
+snippet pgbb:aw
+	page-break-before: always;
+snippet pgbb:a
+	page-break-before: auto;
+snippet pgbb:l
+	page-break-before: left;
+snippet pgbb:r
+	page-break-before: right;
+snippet pgbi
+	page-break-inside: ${0};
+snippet pgbi:a
+	page-break-inside: auto;
+snippet pgbi:av
+	page-break-inside: avoid;
+snippet pos
+	position: ${0};
+snippet pos:a
+	position: absolute;
+snippet pos:f
+	position: fixed;
+snippet pos:r
+	position: relative;
+snippet pos:s
+	position: static;
+snippet q
+	quotes: ${0};
+snippet q:en
+	quotes: '\201C' '\201D' '\2018' '\2019';
+snippet q:n
+	quotes: none;
+snippet q:ru
+	quotes: '\00AB' '\00BB' '\201E' '\201C';
+snippet rz
+	resize: ${0};
+snippet rz:b
+	resize: both;
+snippet rz:h
+	resize: horizontal;
+snippet rz:n
+	resize: none;
+snippet rz:v
+	resize: vertical;
+snippet r
+	right: ${0};
+snippet r:a
+	right: auto;
+snippet tbl
+	table-layout: ${0};
+snippet tbl:a
+	table-layout: auto;
+snippet tbl:f
+	table-layout: fixed;
+snippet tal
+	text-align-last: ${0};
+snippet tal:a
+	text-align-last: auto;
+snippet tal:c
+	text-align-last: center;
+snippet tal:l
+	text-align-last: left;
+snippet tal:r
+	text-align-last: right;
+snippet ta
+	text-align: ${0};
+snippet ta:c
+	text-align: center;
+snippet ta:l
+	text-align: left;
+snippet ta:r
+	text-align: right;
+snippet td
+	text-decoration: ${0};
+snippet td:l
+	text-decoration: line-through;
+snippet td:n
+	text-decoration: none;
+snippet td:o
+	text-decoration: overline;
+snippet td:u
+	text-decoration: underline;
+snippet te
+	text-emphasis: ${0};
+snippet te:ac
+	text-emphasis: accent;
+snippet te:a
+	text-emphasis: after;
+snippet te:b
+	text-emphasis: before;
+snippet te:c
+	text-emphasis: circle;
+snippet te:ds
+	text-emphasis: disc;
+snippet te:dt
+	text-emphasis: dot;
+snippet te:n
+	text-emphasis: none;
+snippet th
+	text-height: ${0};
+snippet th:a
+	text-height: auto;
+snippet th:f
+	text-height: font-size;
+snippet th:m
+	text-height: max-size;
+snippet th:t
+	text-height: text-size;
+snippet ti
+	text-indent: ${0};
+snippet ti:-
+	text-indent: -9999px;
+snippet tj
+	text-justify: ${0};
+snippet tj:a
+	text-justify: auto;
+snippet tj:d
+	text-justify: distribute;
+snippet tj:ic
+	text-justify: inter-cluster;
+snippet tj:ii
+	text-justify: inter-ideograph;
+snippet tj:iw
+	text-justify: inter-word;
+snippet tj:k
+	text-justify: kashida;
+snippet tj:t
+	text-justify: tibetan;
+snippet to+
+	text-outline: ${1:0} ${2:0} #${0:000};
+snippet to
+	text-outline: ${0};
+snippet to:n
+	text-outline: none;
+snippet tr
+	text-replace: ${0};
+snippet tr:n
+	text-replace: none;
+snippet tsh+
+	text-shadow: ${1:0} ${2:0} ${3:0} #${0:000};
+snippet tsh
+	text-shadow: ${0};
+snippet tsh:n
+	text-shadow: none;
+snippet tt
+	text-transform: ${0};
+snippet tt:c
+	text-transform: capitalize;
+snippet tt:l
+	text-transform: lowercase;
+snippet tt:n
+	text-transform: none;
+snippet tt:u
+	text-transform: uppercase;
+snippet tw
+	text-wrap: ${0};
+snippet tw:no
+	text-wrap: none;
+snippet tw:n
+	text-wrap: normal;
+snippet tw:s
+	text-wrap: suppress;
+snippet tw:u
+	text-wrap: unrestricted;
+snippet t
+	top: ${0};
+snippet t:a
+	top: auto;
+snippet va
+	vertical-align: ${0};
+snippet va:bl
+	vertical-align: baseline;
+snippet va:b
+	vertical-align: bottom;
+snippet va:m
+	vertical-align: middle;
+snippet va:sub
+	vertical-align: sub;
+snippet va:sup
+	vertical-align: super;
+snippet va:tb
+	vertical-align: text-bottom;
+snippet va:tt
+	vertical-align: text-top;
+snippet va:t
+	vertical-align: top;
+snippet v
+	visibility: ${0};
+snippet v:c
+	visibility: collapse;
+snippet v:h
+	visibility: hidden;
+snippet v:v
+	visibility: visible;
+snippet whsc
+	white-space-collapse: ${0};
+snippet whsc:ba
+	white-space-collapse: break-all;
+snippet whsc:bs
+	white-space-collapse: break-strict;
+snippet whsc:k
+	white-space-collapse: keep-all;
+snippet whsc:l
+	white-space-collapse: loose;
+snippet whsc:n
+	white-space-collapse: normal;
+snippet whs
+	white-space: ${0};
+snippet whs:n
+	white-space: normal;
+snippet whs:nw
+	white-space: nowrap;
+snippet whs:pl
+	white-space: pre-line;
+snippet whs:pw
+	white-space: pre-wrap;
+snippet whs:p
+	white-space: pre;
+snippet wid
+	widows: ${0};
+snippet w
+	width: ${0};
+snippet w:a
+	width: auto;
+snippet wob
+	word-break: ${0};
+snippet wob:ba
+	word-break: break-all;
+snippet wob:bs
+	word-break: break-strict;
+snippet wob:k
+	word-break: keep-all;
+snippet wob:l
+	word-break: loose;
+snippet wob:n
+	word-break: normal;
+snippet wos
+	word-spacing: ${0};
+snippet wow
+	word-wrap: ${0};
+snippet wow:no
+	word-wrap: none;
+snippet wow:n
+	word-wrap: normal;
+snippet wow:s
+	word-wrap: suppress;
+snippet wow:u
+	word-wrap: unrestricted;
+snippet z
+	z-index: ${0};
+snippet z:a
+	z-index: auto;
+snippet zoo
+	zoom: 1;
+snippet :h
+	:hover
+snippet :fc
+	:first-child
+snippet :lc
+	:last-child
+snippet :nc
+	:nth-child(${0})
+snippet :nlc
+	:nth-last-child(${0})
+snippet :oc
+	:only-child
+snippet :a
+	:after
+snippet :b
+	:before
+snippet ::a
+	::after
+snippet ::b
+	::before

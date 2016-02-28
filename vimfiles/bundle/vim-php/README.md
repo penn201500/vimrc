@@ -15,7 +15,7 @@ If you don't have a preferred installation method, [pathogen.vim](https://github
 
 ```bash
 cd ~/.vim/bundle
-git clone https://github.com/StanAngeloff/php.vim.git
+git clone git@github.com:StanAngeloff/php.vim.git
 ```
 
 Configuration

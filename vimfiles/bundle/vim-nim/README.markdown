@@ -1,6 +1,6 @@
-#Nim language support for Vim
+#Nimrod language support for Vim
 
-This provides [Nim](http://nimrod-code.org) language support for Vim:
+This provides [Nimrod](http://nimrod-code.org) language support for Vim:
 
 * Syntax highlighting
 * Auto-indent

@@ -249,9 +249,7 @@ function! julia_blocks#init_mappings()
   " we would need some autocmd event associated with exiting from
   " visual mode, but there isn't any, so we resort to this crude
   " hack
-  " ACTUALLY this creates more problems than it solves, so the crude hack
-  " is just disabled
-  "vnoremap <buffer><silent><unique> <Esc> <Esc>:call julia_blocks#select_reset()<CR>
+  vnoremap <buffer><silent><unique> <Esc> <Esc>:call julia_blocks#select_reset()<CR>
 endfunction
 
 function! julia_blocks#remove_mappings()
@@ -340,11 +338,6 @@ function! s:on_begin()
   return n > 0
 endfunction
 
-function! s:matchit()
-  let lkj = exists(":lockjumps") == 2 ? "lockjumps " : ""
-  exe lkj . "normal %"
-endfunction
-
 function! s:move_before_begin()
   call search(b:julia_begin_keywordsm, 'Wbc')
   normal! h
@@ -353,7 +346,7 @@ endfunction
 function! s:cycle_until_end()
   let pos = getpos('.')
   while !s:on_end()
-    call s:matchit()
+    normal %
     let c = 0
     if getpos('.') == pos || c > 1000
       " shouldn't happen, but let's avoid infinite loops anyway
@@ -585,7 +578,7 @@ function! julia_blocks#moveblock_p()
       break
     endif
 
-    call s:matchit()
+    normal %
     let ret = 1
   endfor
   if !ret
@@ -607,7 +600,7 @@ function! julia_blocks#moveblock_P()
 
     call s:moveto_currentblock_end()
     if s:on_end()
-      call s:matchit()
+      normal %
     endif
 
     if s:moveto_block_delim(1, 1, 1)
@@ -686,7 +679,7 @@ function! s:find_block(current_mode)
 
   let end_pos = getpos('.')
   " Jump to match
-  call s:matchit()
+  normal %
   let start_pos = getpos('.')
 
   let b:jlblk_last_start_pos = copy(start_pos)

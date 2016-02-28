@@ -61,14 +61,9 @@
   box-decoration-break: auto;
 }
 
-.cascade-3 {
+.cascade {
   all: initial;
   display: unset;
-}
-
-@import "test.css" supports(display: auto);
-.cascade-4 {
-  display: revert;
 }
 
 .colors {
@@ -162,11 +157,11 @@
 }
 
 .display {
-  box-suppress: flow;
-  display: flow-root;
-  display: contents;
-  display: inline-list-item;
-  display: discard;
+  display-inside: block-level;
+  display-outside: inline-level;
+  display-list: contents;
+  display-suppress: inline-list-item;
+  display: show;
 }
 
 .exclusions {
@@ -255,9 +250,6 @@
   grid-column: auto;
   grid-row: auto;
   grid-area: auto;
-  grid-column-gap: auto;
-  grid-row-gap: auto;
-  grid-gap: auto;
 }
 
 .images {
@@ -274,12 +266,8 @@
 }
 
 .inline {
-  dominant-baseline: mathematical;
-  alignment-baseline: ideographic;
-  baseline-shift: auto;
-  initial-letter: auto;
+  initial-letter: ideographic;
   initial-letter-align: auto;
-  initial-letter-wrap: auto;
 }
 
 .line-grid {
@@ -288,6 +276,28 @@
   box-snap: block-end;
   display: first-baseline;
   display: last-baseline;
+}
+
+.linebox {
+  alignment-adjust: central;
+  alignment-baseline: mathematical;
+  baseline-shift: before-edge;
+  dominate-baseline: after-edge;
+  drop-initial-after-adjust: text-before-edge;
+  drop-initial-after-align: text-after-edge;
+  drop-initial-before-adjust: use-script;
+  drop-initial-before-align: caps-height;
+  drop-initial-size: exclude-ruby;
+  drop-initial-value: include-ruby;
+  inline-box-align: consider-shift;
+  line-stacking: disregard-shift;
+  line-stacking-ruby: inline-line-height;
+  line-stacking-shift: block-line-height;
+  line-stacking-strategy: max-height;
+  text-height: grid-height;
+  display: font-size;
+  display: text-size;
+  display: max-size;
 }
 
 .lists::marker {
@@ -346,15 +356,6 @@
   display: verso;
 }
 
-.page-floats-3 {
-  float-reference: inline-start;
-  float-defer: inline-end;
-  float-offset: snap-block;
-  display: snap-inline;
-  display: snap-block(2em, near);
-  display: snap-inline(2em, near);
-}
-
 .positioning {
   offset-before: sticky;
   offset-end: auto;
@@ -375,15 +376,6 @@
   region-fragment: break;
   display: region;
   display: avoid-region;
-}
-
-@media (device-radius: 50%) {
-  .round-display-1 {
-    shape-inside: outside-shape;
-    border-boundary: shape-box;
-    polar-angle: parent;
-    polar-distance: polar;
-  }
 }
 
 .ruby {
@@ -503,7 +495,7 @@
   display: reduced;
 }
 
-.text-3 {
+.text {
   hyphens: manual;
   line-break: loose;
   overflow-wrap: strict;
@@ -511,31 +503,6 @@
   display: hanging;
   display: each-line;
   display: full-width;
-}
-
-.text-4 {
-  text-space-collapse: preserve-auto;
-  text-space-trim: preserve-trim;
-  text-wrap: preserve-breaks;
-  wrap-before: preserve-spaces;
-  wrap-after: trim-inner;
-  wrap-inside: discard-before;
-  hyphenate-character: discard-after;
-  hyphenate-limit-zone: avoid-line;
-  hyphenate-limit-chars: avoid-flex;
-  hyphenate-limit-lines: pre-wrap-auto;
-  hyphenate-limit-last: no-limit;
-  text-spacing: spread;
-  display: trim-start;
-  display: space-start;
-  display: trim-end;
-  display: space-end;
-  display: trim-adjacent;
-  display: space-adjacent;
-  display: no-compress;
-  display: ideograph-alpha;
-  display: ideograph-numeric;
-  display: punctuation;
 }
 
 .text-decor-3 {
@@ -592,15 +559,9 @@
   display: cubic-bezier(0.25, 0.1, 0.25, 1.0);
 }
 
-.ui-3 {
+.ui {
   caret-color: grab;
   display: grabbing;
-}
-
-.ui-4 {
-  caret: fade;
-  caret-shape: fade(1em);
-  caret-animation: underscore;
 }
 
 .values {
@@ -623,16 +584,17 @@
 }
 
 .writing-modes {
-  writing-mode: before;
-  text-orientation: after;
-  text-combine-upright: mixed;
-  glyph-orientation-vertical: upright;
-  display: plaintext;
-  display: sideways;
-  display: sideways-rl;
-  display: sideways-lr;
+  text-orientation: before;
+  text-combine-horizontal: after;
+  writing-mode: isolate;
   display: isolate;
-  display: isolate-override;
+  display: plaintext;
+  display: mixed;
+  display: upright;
+  display: sideways;
+  display: sideways-right;
+  display: sideways-left;
+  display: use-glyph-orientation;
   display: horizontal-tb;
   display: vertical-rl;
   display: vertical-lr;

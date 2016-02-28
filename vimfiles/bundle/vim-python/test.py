@@ -18,11 +18,6 @@ class Classname
 def функция
 class Класс
 
-await
-async def Test
-async with
-async for
-
 # Builtin objects.
 
 True False Ellipsis None NotImplemented

@@ -21,9 +21,6 @@ elseif exists("b:current_syntax") && b:current_syntax == "ocaml"
   finish
 endif
 
-" ' can be used in OCaml identifiers
-setlocal iskeyword+='
-
 " OCaml is case sensitive.
 syn case match
 

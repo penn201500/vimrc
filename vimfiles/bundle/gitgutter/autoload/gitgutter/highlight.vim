@@ -31,7 +31,7 @@ function! gitgutter#highlight#define_highlights()
   highlight default link GitGutterAddLine          DiffAdd
   highlight default link GitGutterChangeLine       DiffChange
   highlight default link GitGutterDeleteLine       DiffDelete
-  highlight default link GitGutterChangeDeleteLine GitGutterChangeLine
+  highlight default link GitGutterChangeDeleteLine GitGutterChangeLineDefault
 endfunction
 
 function! gitgutter#highlight#define_signs()

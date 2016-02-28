@@ -1,206 +1,247 @@
-snippet /       单行注释
-	// ${0}
-snippet //      多行注释
-	/* ${0}*/
-snippet -       分隔注释
-	//----------------------------------------------------------------------${0}
-snippet pa      包
-	package ${0}
-snippet pam     main包
-	package main${0}
-snippet im      导入单个包
-	import "${1}"${0}
-snippet im.     导入多个包
-	import (
-	    "${1}"
-		"${2}"${0}
-	)
-# 函数、复合结构
-snippet init    初始化函数
-	func init () {
-	    ${0}
-	}
-snippet main    主函数
-	func main () {
-	    ${0}
-	}
-snippet f       函数1
-	func ${1:f_name} (${2})${3} {
-	    ${0}
-	}
-snippet f.      函数2
-	func (${1}) ${2:f_name} (${3})${4} {
-	    ${0}
-	}
-snippet ff      匿名函数
-	func (${1})${2} {${0}}
-snippet str     结构体
-	type ${1:str_name} struct {
-	    ${0}
-	}
-snippet <       结构体
-	type ${1:str_name} struct {
-	    ${0}
-	}
-snippet int     接口
-	type ${1:int_name} interface {
-	    ${0}
-	}
-snippet >       接口
-	type ${1:int_name} interface {
-	    ${0}
-	}
-# 流程控制
-snippet if      if
-	if ${1} {
-	    ${0}
-	}
-snippet elif    else if
-	else if ${1} {
-	    ${0}
-	}
-snippet el      else
-	else {
-	    ${0}
-	}
-snippet fo      for
-	for ${1} {
-	    ${0}
-	}
-snippet fr      for range
-	for ${1} := range ${2} {
-	    ${0}
-	}
-snippet sw      switch
-	switch ${1} {
-	    ${0}
-	}
-snippet se      select
-	select {
-	    ${0}
-	}
-snippet cs      case
-	case ${1}:
-	    ${0}
-snippet def     default
-	default:
-	    ${0}
-snippet fa      继续匹配
-	fallthrough${0}
-# 单个关键字
-snippet re      返回
-	return ${0}
-snippet co      继续
-	continue${0}
-snippet br      中断
-	break ${0}
-snippet go      跳转
-	goto ${0}
-snippet de      函数返回之前执行
-	defer ${0}
-snippet ra      range
-	range ${0}
-snippet g       Go程
-	go ${0}
-snippet ch      管道
-	chan ${0}
-snippet d       删除
-	delete(${0})
-snippet con     定义常量
-	const ${0}
-snippet con.    定义多个常量
-	const (
-	    ${0}
-	)
-snippet v       定义变量
-	var ${0}
-snippet v.      定义多个变量
+# shorthand variable declaration
+snippet v
+	${1} := ${2}
+# variable initialization
+snippet vr
+	var ${1:t} ${0:string}
+# variable declaration
+snippet var
+	var ${1} ${2} = ${3}
+# variables declaration
+snippet vars
 	var (
-	    ${0}
+		${1} ${2} = ${3}
 	)
-snippet t       定义类型
-	type ${0}
-snippet t.      定义多个类型
-	type (
-	    ${0}
+# append
+snippet ap
+	append(${1:slice}, ${0:value})
+# bool
+snippet bl
+	bool
+# byte
+snippet bt
+	byte
+# break
+snippet br
+	break
+# channel
+snippet ch
+	chan ${0:int}
+# case
+snippet cs
+	case ${1:value}:
+		${0}
+# const
+snippet c
+	const ${1:NAME} = ${0:0}
+# constants with iota
+snippet co
+	const (
+		${1:NAME1} = iota
+		${0:NAME2}
 	)
-snippet io      初始置0，自增1
-	iota${0}
-# 数据类型
-snippet e       error
-	error${0}
-snippet b       bool
-	bool${0}
-snippet r       rune
-	rune${0}
-snippet s       string
-	string${0}
-snippet by      byte
-	byte${0}
-snippet i       int
-	int${0}
-snippet i8      int8
-	int8${0}
-snippet i16     int16
-	int16${0}
-snippet i32     int32
-	int32${0}
-snippet i64     int64
-	int64${0}
-snippet u       uint
-	uint${0}
-snippet up      uintptr
-	uintptr${0}
-snippet u8      uint8
-	uint8${0}
-snippet u16     uint16
-	uint16${0}
-snippet u32     uint32
-	uint32${0}
-snippet u64     uint64
-	uint64${0}
-snippet f32     float32
-	float32${0}
-snippet f64     float64
-	float64${0}
-snippet c64     complex64
-	complex64${0}
-snippet c128    complex128
-	complex128${0}
-# 内置函数
-snippet cl      关闭管道
-	close(${0})
-snippet l       获取大小或长度
-	len(${0})
-snippet c       获取最大容量
-	cap(${0})
-snippet n       分配内存（值类型和用户自定义类型）
-	new(${0})
-snippet m       分配内存（返回对指定类型初始化之后的值）
-	make(${0})
-snippet ap      连接切片
-	append(${0})
-snippet pa      错误处理
-	panic(${0})
-snippet rv      错误处理
-	recover(${0})
-# 输入输出
-snippet p       输出（不换行）
-	print(${0})
-snippet pl      输出（换行）
-	println(${0})
-snippet fp      fmt.Print
-	fmt.Print(${0})
-snippet fpf     fmt.Printf
-	fmt.Printf("${1}", ${0})
-snippet fpl     fmt.Println
-	fmt.Println(${0})
-snippet fsp     fmt.Sprintf
-	fmt.Sprintf("${1}", ${0})
-snippet ffp     fmt.Fprintf
-	fmt.Fprintf(${0})
-# 其他
-snippet .       :=
-	:= ${0}
-snippet ,       <-
-	<- ${0}
+# continue
+snippet cn
+	continue
+# defer
+snippet df
+	defer ${0:func}()
+# defer recover
+snippet dfr
+	defer func() {
+		if err := recover(); err != nil {
+			${0}
+		}
+	}()
+# gpl
+snippet gpl
+	/*
+	 * This program is free software; you can redistribute it and/or modify
+	 * it under the terms of the GNU General Public License as published by
+	 * the Free Software Foundation; either version 2 of the License, or
+	 * (at your option) any later version.
+	 *
+	 * This program is distributed in the hope that it will be useful,
+	 * but WITHOUT ANY WARRANTY; without even the implied warranty of
+	 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	 * GNU General Public License for more details.
+	 *
+	 * You should have received a copy of the GNU General Public License
+	 * along with this program; if not, see <http://www.gnu.org/licenses/>.
+	 *
+	 * Copyright (C) ${1:Author}, `strftime("%Y")`
+	 */
+
+	${0}
+# int
+snippet i
+	int
+# import
+snippet im
+	import (
+		"${1:package}"
+	)
+# interface
+snippet in
+	interface{}
+# full interface snippet
+snippet inf
+	interface ${1:name} {
+		${2:/* methods */}
+	}
+# if condition
+snippet if
+	if ${1:/* condition */} {
+		${2}
+	}
+# else snippet
+snippet el
+	else {
+		${1}
+	}
+# error snippet
+snippet ir
+	if err != nil {
+		return err
+	}
+	${0}
+# false
+snippet f
+	false
+# fallthrough
+snippet ft
+	fallthrough
+# float
+snippet fl
+	float32
+# float32
+snippet f3
+	float32
+# float64
+snippet f6
+	float64
+# if else
+snippet ie
+	if ${1:/* condition */} {
+		${2}
+	} else {
+		${3}
+	}
+	${0}
+# for loop
+snippet fo
+	for ${2:i} := 0; $2 < ${1:count}; $2${3:++} {
+		${4}
+	}
+	${0}
+# for range loop
+snippet fr
+	for ${1:k}, ${2:v} := range ${3} {
+		${4}
+	}
+	${0}
+# function simple
+snippet fun
+	func ${1:funcName}(${2}) ${3:error} {
+		${4}
+	}
+	${0}
+# function on receiver
+snippet fum
+	func (${1:receiver} ${2:type}) ${3:funcName}(${4}) ${5:error} {
+		${6}
+	}
+	${0}
+# log printf
+snippet lf
+	log.Printf("%${1:s}", ${2:var})
+# log printf
+snippet lp
+	log.Println("${1}")
+# make
+snippet mk
+	make(${1:[]string}, ${0:0})
+# map
+snippet mp
+	map[${1:string}]${0:int}
+# main()
+snippet main
+	func main() {
+		${1}
+	}
+	${0}
+# new
+snippet nw
+	new(${0:type})
+# package
+snippet pa
+	package ${1:main}
+# panic
+snippet pn
+	panic("${0:msg}")
+# print
+snippet pr
+	fmt.Printf("%${1:s}\n", ${2:var})
+# range
+snippet rn
+	range ${0}
+# return
+snippet rt
+	return ${0}
+# result
+snippet rs
+	result
+# select
+snippet sl
+	select {
+	case ${1:v1} := <-${2:chan1}
+		${3}
+	case ${4:v2} := <-${5:chan2}
+		${6}
+	default:
+		${0}
+	}
+# string
+snippet sr
+	string
+# struct
+snippet st
+	struct ${1:name} {
+		${2:/* data */}
+	}
+	${0}
+# switch
+snippet sw
+	switch ${1:var} {
+	case ${2:value1}:
+		${3}
+	case ${4:value2}:
+		${5}
+	default:
+		${0}
+	}
+snippet sp
+	fmt.Sprintf("%${1:s}", ${2:var})
+# true
+snippet t
+	true
+# goroutine named function
+snippet g
+	go ${1:funcName}(${0})
+# goroutine anonymous function 
+snippet ga
+	go func(${1} ${2:type}) {
+		${3:/* code */}
+	}(${0})
+snippet test test function
+	func Test${1:name}(t *testing.T) {
+		${2}
+	}
+	${0}
+snippet bench benchmark function
+	func Benchmark${1:name}(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			${2}
+		}
+	}
+	${0}

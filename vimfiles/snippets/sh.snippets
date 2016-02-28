@@ -1,86 +1,94 @@
-snippet #       可执行标识
+# Shebang. Executing bash via /usr/bin/env makes scripts more portable.
+snippet #!
+	#!/usr/bin/env sh
+	
+snippet bash
 	#!/usr/bin/env bash
-	${0}
-snippet /       单行注释
-	# ${0}
-snippet -       分隔注释
-	#----------------------------------------------------------------------${0}
-snippet doc     heredoc
-	<<${1:HEREDOC}
-	${0}
-	$1
-# 复合结构
-snippet f       函数定义
-	function ${1:f_name} {
-	  ${0}
-	}
-# 流程控制
-snippet if      if
-	if [ ${1} ]
-	then
-	  ${0}
+
+snippet if
+	if [[ ${1:condition} ]]; then
+		${0:#statements}
 	fi
-snippet elif    elif
-	elif [ ${1} ]
-	then
-	  ${0}
-snippet el      else
-	else
-	  ${0}
-snippet th      then
-	then
-	  ${0}
-snippet fo      for循环
-	for ${0}
-snippet fi      for .. in
-	for ${1} in ${0}
-snippet wh      while循环
-	while ${0}
-snippet ut      until循环
-	until ${0}
-snippet sel     select .. in
-	select ${1} in ${0}
-snippet do      do .. done
-	do
-	  ${0}
+snippet elif
+	elif [[ ${1:condition} ]]; then
+		${0:#statements}
+snippet for
+	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
+		${0:#statements}
 	done
-snippet cs      case .. in
-	case ${1} in
-	  ${0}
+snippet fori
+	for ${1:needle} in ${2:haystack} ; do
+		${0:#statements}
+	done
+snippet wh
+	while [[ ${1:condition} ]]; do
+		${0:#statements}
+	done
+snippet until
+	until [[ ${1:condition} ]]; do
+		${0:#statements}
+	done
+snippet case
+	case ${1:word} in
+		${2:pattern})
+			${0};;
 	esac
-snippet def     default
-	default ${0};
-# 单个关键字
-snippet lo      局部变量
-	local ${0}
-snippet br      中断
-	break${0}
-snippet co      继续
-	continue${0}
-snippet re      返回
-	return ${0}
-snippet ex      退出并返回状态码
-	exit ${0}
-snippet al      别名
-	alias ${1}=${0}
-snippet ual     取消别名
-	unalias ${0}
-snippet l       赋值
-	let ${0}
-snippet s       设置
-	set ${0}
-snippet d       声明
-	declare ${0}
-snippet r       输入
-	read ${0}
-snippet e       输出
-	echo ${0}
-snippet pi      print
-	print ${0}
-snippet pf      printf
-	printf ${0}
-# 其他
-snippet x       $[ .. ]
-	$[ ${0} ]
-snippet y       $(( .. ))
-	$(( ${0} ))
+snippet go
+	while getopts '${1:o}' ${2:opts}
+	do
+		case $$2 in
+		${3:o0})
+			${0:#staments};;
+		esac
+	done
+# Set SCRIPT_DIR variable to directory script is located.
+snippet sdir
+	SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# getopt
+snippet getopt
+	__ScriptVersion="${1:version}"
+
+	#===  FUNCTION  ================================================================
+	#         NAME:  usage
+	#  DESCRIPTION:  Display usage information.
+	#===============================================================================
+	function usage ()
+	{
+		echo "Usage :  $${0:0} [options] [--]
+
+	    Options:
+	    -h|help       Display this message
+	    -v|version    Display script version"
+
+	}    # ----------  end of function usage  ----------
+
+	#-----------------------------------------------------------------------
+	#  Handle command line arguments
+	#-----------------------------------------------------------------------
+
+	while getopts ":hv" opt
+	do
+	  case $opt in
+
+		h|help     )  usage; exit 0   ;;
+
+		v|version  )  echo "$${0:0} -- Version $__ScriptVersion"; exit 0   ;;
+
+		* )  echo -e "\n  Option does not exist : $OPTARG\n"
+			  usage; exit 1   ;;
+
+	  esac    # --- end of case ---
+	done
+	shift $(($OPTIND-1))
+snippet root
+	if [ \$(id -u) -ne 0 ]; then exec sudo \$0; fi
+
+snippet fun-sh
+	${1:function_name}() {
+		${0:#function_body}
+	}
+
+snippet fun
+	function ${1:function_name}() {
+		${0:#function_body}
+	}

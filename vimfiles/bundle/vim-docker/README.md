@@ -17,28 +17,22 @@ Here is an example in gnome-terminal with [vim-monokai](https://github.com/sicki
 Installation
 ============
 
-```bash
+````bash
 $ git clone https://github.com/ekalinin/Dockerfile.vim.git
 $ cd Dockerfile.vim
 $ make install
-```
+````
 
-####Or using Pathogen:
+####OR using Pathogen:
 ```bash
 # Clone directly into the bundle folder.
 git clone https://github.com/ekalinin/Dockerfile.vim.git bundle/Dockerfile
 ```
 
-####Or using Vundle:
+####OR using Vundle:
 ```bash
 # near the top of your .vimrc
 Plugin 'ekalinin/Dockerfile.vim'
-```
-
-####Or using NeoBundle:
-
-```bash
-NeoBundle 'ekalinin/Dockerfile.vim'
 ```
 
 License

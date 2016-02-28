@@ -17,7 +17,6 @@ Libraries
 * [prelude.ls](http://gkz.github.com/prelude-ls/)
 * [AngularJS](http://angularjs.org/)
 * [AngularUI](http://angular-ui.github.io)
-* [AngularUI Router](http://angular-ui.github.io/ui-router/)
 * [React](https://facebook.github.io/react/)
 * [Flux](https://facebook.github.io/flux/)
 * [RequireJS](http://requirejs.org/)
@@ -60,7 +59,6 @@ Support libs id:
 * prelude.ls: prelude
 * AngularJS: angularjs
 * AngularUI: angularui
-* AngularUI Router: angularuirouter
 * React: react
 * Flux: flux
 * RequireJS: requirejs

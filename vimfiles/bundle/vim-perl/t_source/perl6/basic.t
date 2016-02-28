@@ -5,11 +5,6 @@ for @foo <-> $value {
 sub infix:<->(Foo) is required {
 }
 
-my &double-invert = &invert o &double;
-my &double-invert = &invert ∘ &double;
-
-"foo $bar.baz() $?CLASS.hi() $gsdf.hlagh(foo => 3) $much.^meta().wow()"
-
 ( < foo bar>)
 class Request { }
 
@@ -96,8 +91,6 @@ token foo {
     (<-[:]>*)
     <foo=.file>
 }
-
-"foo = $<foo>";
 
 state %sub-menus = @menu>>.key>>[0] Z=> @menu>>.value;
 

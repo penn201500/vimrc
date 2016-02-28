@@ -10,9 +10,8 @@ import hidewin
 class G:
     fsac = None
     fsi = None
-    paths = {}
     locations = []
-    projects = {}
+    projects = {} 
 
 class Interaction:
     def __init__(self, proc, timeOut, logfile = None):
@@ -77,7 +76,6 @@ class FSAutoComplete:
         self._helptext = Interaction(self.p, 1, self.logfile)
         self._errors = Interaction(self.p, 3, self.logfile)
         self._project = Interaction(self.p, 3, self.logfile)
-        self._getpaths = Interaction(self.p, 1, self.logfile)
 
         self.worker = threading.Thread(target=self.work, args=(self,))
         self.worker.daemon = True
@@ -119,8 +117,6 @@ class FSAutoComplete:
                 self._project.update(data)
             elif parsed['Kind'] == "finddecl":
                 self._finddecl.update(parsed['Data'])
-            elif parsed['Kind'] == "compilerlocation":
-                self._getpaths.update(parsed['Data'])
 
     def help(self):
         self.send("help\n")
@@ -144,9 +140,6 @@ class FSAutoComplete:
 
         if self.debug:
             self.logfile.close()
-
-    def get_paths(self):
-        return self._getpaths.send("compilerlocation\n")
 
     def complete(self, fn, line, column, base):
         self.__log('complete: base = %s\n' % base)
@@ -202,11 +195,11 @@ class FSAutoComplete:
 
     def helptext(self, candidate):
         msg = self._helptext.send('helptext %s\n' % candidate)
-        msg = str(msg['Text'])
+        msg = str(msg[candidate])
 
         if "\'" in msg and "\"" in msg:
             msg = msg.replace("\"", "") #HACK: dictionary parsing in vim gets weird if both ' and " get printed in the same string
-        elif "\n" in msg:
+        elif "\n" in msg: 
             msg = msg + "\n\n'" #HACK: - the ' is inserted to ensure that newlines are interpreted properly in the preview window
         return msg
 

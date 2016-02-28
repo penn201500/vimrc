@@ -9,7 +9,7 @@ syn keyword oasisPlugin META DevFiles StdFiles
 
 syn match oasisOperator "(\|)\|>=\|,\|&&"
 syn match oasisVariable "$\w\+"
-syn match oasisVersion "\d\+\(.\(\d\)\+\)\+"
+syn match oasisNumber "\d\+"
 syn region oasisString start=/"/ end=/"/
 
 syntax keyword oasisSection Document Executable Flag Library Document Test SourceRepository
@@ -62,7 +62,6 @@ syntax match oasisKey2 "\c\s\+BuildTools+:"
 syntax match oasisKey2 "\c\s\+XMETARequires\$\=:"
 syntax match oasisKey2 "\c\s\+XMETADescription\$\=:"
 syntax match oasisKey2 "\c\s\+XMETAType\$\=:"
-syntax match oasisKey2 "\c\s\+XMETAExtraLines\$\=:"
 syntax match oasisKey2 "\c\s\+InstallDir\$\=:"
 syntax match oasisKey2 "\c\s\+XOCamlbuildLibraries\$\=:"
 syntax match oasisKey2 "\c\s\+XOCamlbuildPath\$\=:"
@@ -89,6 +88,6 @@ highlight link oasisSpecialFeatures Exception
 highlight link oasisOperator Operator
 highlight link oasisVariable Statement
 highlight link oasisString String
-highlight link oasisVersion Number
+highlight link oasisNumber Number
 
 let b:current_syntax = "oasis"

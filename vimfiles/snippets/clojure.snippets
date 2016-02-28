@@ -1,85 +1,87 @@
-snippet /       单行注释
-	; ${0}
-snippet //      多行注释
-	(comment ${0})
-snippet -       分隔注释
-	;----------------------------------------------------------------------${0}
-# 包、命令空间、类
-snippet im      导入包
-	import${0}
-snippet rq      导入包文件
-	require '${0}
-snippet u       use
-	use '${0}
-# 结构定义
-snippet d       定义变量
-	def ${0}
-snippet dn      定义函数
-	defn ${1} [${2}]${0}
-snippet da      定义宏
-	defmacro ${1} [${2}]${0}
-snippet dr      获取引用
-	deref ${0}
-snippet dpr     定义协议
-	defprotocol ${0}
-snippet dre     定义实现
-	defrecord ${0}
-snippet dp      定义项目
-	defproject ${0}
-snippet ff      匿名函数
-	fn [${1}] ${0}
-# 流程控制
-snippet if      if
-	if (${1})${0}
-snippet fo      for
-	for [${1}]${0}
-# 单个关键字
-snippet a       原子
-	atom ${0}
-snippet l       变量声明
-	let ${0}
-snippet s       变量赋值
-	set ${0}
-snippet li      列表
-	list ${0}
-snippet v       向量
-	vector ${0}
-snippet m       map
-	map ${0}
-snippet t       take
-	take ${0}
-snippet mex     宏展开
-	macroexpand ${0}
-# 序列操作
-snippet fi      头部元素
-	first ${0}
-snippet r       除头部以外的列表
-	rest ${0}
-snippet la      尾部元素
-	last ${0}
-snippet c       创建新列表
-	cons ${0}
-snippet n       取第N个元素 [Vector]
-	nth ${0}
-# 常用函数
-snippet co      统计
-	count ${0}
-snippet so      排序
-	sort ${0}
-snippet cd      分段匹配 [相当于switch]
-	cond (${1}) ${2}
-	  (${3}) ${0}
-snippet cj      联合元素
-	conj ${0}
-snippet sw      swap!
-	swap! ${0}
-snippet fm      格式化输出
-	format "${1}" ${0}
-# 输入输出
-snippet p       输出 [不换行]
-	print ${0}
-snippet pl      输出 [换行]
-	println ${0}
-# 其他
-snippet .       #{ .. } [HashSet]
-	#{${0}}
+snippet comm
+	(comment
+		${0})
+snippet condp
+	(condp ${1:pred} ${2:expr}
+		${0})
+snippet def
+	(def ${0})
+snippet defm
+	(defmethod ${1:multifn} "${2:doc-string}" ${3:dispatch-val} [${4:args}]
+		${0})
+snippet defmm
+	(defmulti ${1:name} "${2:doc-string}" ${0:dispatch-fn})
+snippet defma
+	(defmacro ${1:name} "${2:doc-string}" ${0:dispatch-fn})
+snippet defn
+	(defn ${1:name} "${2:doc-string}" [${3:arg-list}]
+		${0})
+snippet defp
+	(defprotocol ${1:name}
+		${0})
+snippet defr
+	(defrecord ${1:name} [${2:fields}]
+		${3:protocol}
+		${0})
+snippet deft
+	(deftest ${1:name}
+		(is (= ${0:assertion})))
+snippet is
+	(is (= ${1} ${0}))
+snippet defty
+	(deftype ${1:Name} [${2:fields}]
+		${3:Protocol}
+		${0})
+snippet doseq
+	(doseq [${1:elem} ${2:coll}]
+		${0})
+snippet fn
+	(fn [${1:arg-list}] ${0})
+snippet if
+	(if ${1:test-expr}
+		${2:then-expr}
+		${0:else-expr})
+snippet if-let
+	(if-let [${1:result} ${2:test-expr}]
+		(${3:then-expr} $1)
+		(${0:else-expr}))
+snippet imp
+	(:import [${1:package}])
+		& {:keys [${1:keys}] :or {${0:defaults}}}
+snippet let
+	(let [${1:name} ${2:expr}]
+		${0})
+snippet letfn
+	(letfn [(${1:name}) [${2:args}]
+		${0})])
+snippet map
+	(map ${1:func} ${0:coll})
+snippet mapl
+	(map #(${1:lambda}) ${0:coll})
+snippet met
+	(${1:name} [${2:this} ${3:args}]
+		${0})
+snippet ns
+	(ns ${0:name})
+snippet dotimes
+	(dotimes [_ 10]
+		(time
+			(dotimes [_ ${1:times}]
+				${0})))
+snippet pmethod
+	(${1:name} [${2:this} ${0:args}])
+snippet refer
+	(:refer-clojure :exclude [${0}])
+snippet require
+	(:require [${1:namespace} :as [${0}]])
+snippet use
+	(:use [${1:namespace} :only [${0}]])
+snippet print
+	(println ${0})
+snippet reduce
+	(reduce ${1:(fn [p n] ${3})} ${2})
+snippet when
+	(when ${1:test} ${0:body})
+snippet when-let
+	(when-let [${1:result} ${2:test}]
+		${0:body})

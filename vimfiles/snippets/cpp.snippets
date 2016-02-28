@@ -15,20 +15,17 @@ snippet ins     包含标准输入输出头文件
 	#include <stdio.h>${0}
 snippet df      宏定义
 	#define ${0}
-snippet /if     包含了指定头文件时的处理方式
+snippet ifdf    包含了指定头文件时的处理方式
 	#ifdef ${1}
 	${0}
 	#endif
-snippet /ifn    防止头文件重复包含
+snippet ifndf   防止头文件重复包含
 	#ifndef _HEAD_${1:}_H_
 	#define _HEAD_$1_H_
 
 	${0}
 
 	#endif
-snippet /el     #else
-	#else
-	${0}
 snippet line    改变文件行号和文件名
 	#line ${1} "${0}"
 # 命名空间、类
@@ -179,9 +176,7 @@ snippet _d      日期
 snippet _t      时间
 	__TIME__${0}
 snippet _ff     函数名
-	__func__${0}
-snippet _va     所有剩余的宏参数
-	__VA_ARGS__${0}
+	__FUNCTION__${0}
 snippet _std    标准C
 	__STDC__${0}
 snippet _gnu    GNUC
@@ -190,13 +185,13 @@ snippet _cpp    C++
 	__cplusplus${0}
 # 输入输出
 snippet p       输出
-	printf("${1}"${2});${0}
+	printf("${1}"${0});
 snippet s       输入
-	scanf("${1}", ${2});${0}
+	scanf("${1}", ${0});
 snippet spr
-	sprintf(${1:stderr}, "${2:%s}", ${3});${0}
+	sprintf(${1:stderr}, "${2:%s}", ${0});
 snippet fpr
-	fprintf(${1:stderr}, "${2:%s}"${3});${0}
+	fprintf(${1:stderr}, "${2:%s}"${0});
 # 单个关键字
 snippet pu      公共 [不换行]
 	public${0}
